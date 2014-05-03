@@ -43,6 +43,21 @@ create $pad  65540 allot
 
 : .. s>d <# #s #> type ;
 
+: defer
+  create 0 ,
+does>
+  @ execute
+;
+
+: >pfa
+  >pf @
+;
+
+: is ( xt <name> -- )
+  >pfa ' swap !
+;
+
+
 requires MODULES
 digression read "read.fth"
 digression dice "dice.fth"
