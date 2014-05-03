@@ -1,4 +1,5 @@
 \ define file handle
+
 s" /dev/urandom" open/ro dup 0< throw constant rand
 
 : d ( s -- n )
@@ -7,7 +8,9 @@ s" /dev/urandom" open/ro dup 0< throw constant rand
 ;
 
 variable (seed)
-4 (seed) rand read drop (seed)
+4 (seed) rand read drop
+
+rand close drop
 
 : xorshift ( n -- n ) 
   dup 13 lshift xor 
