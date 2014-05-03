@@ -16,53 +16,90 @@ public:
 
 private:
 
+defer map-details
+
 : III.magic
   ." Random Magic "
 ;
 
 \ GEMS
 
-: ,$
+: .,
   [char] , emit
   space
 ;
 
-dtable: moneytreasure
+dtable: magicmaptreasure
+1 	i: ." 1 item plus 4 potions" ;i
+6	i: ." 2 items" ;i
+9	i: ." 1 sword, 1 armour/shield, 1 misc. weapon" ;i
+13	i: ." Any 3 items except swords and potions" ;i
+15	i: ." 6 potions, 6 rings" ;i
+19	i: ." 1 ring, 1 rod, any 2 others" ;i
+20	i: ." 1 rod, 1 misc magic, any 3 others" ;i
+;table
 
+dtable: moneytreasure
 1  i: 2d4 1000s ..  ." cp, "
       d4 1+ 10 * 1000s .. ." sp" ;i
 3  i: 5d6 1000s ..  ." ep" ;i
 6  i: 3d6 1000s ..  ." gp" ;i
 11 i: 5d4 100 * ..  ." pp" ;i
-13 i: d10 10 * dup .. ."  gems:" cr .gems cr ;i
+13 i: d10 10 * dup .. ."  gems:" cr .gems ;i
 16 i: 5 10 roll  dup .. ."  jewels:" cr .jewels ;i
-18 i: 17 d  moneytreasure ,$  17 d  moneytreasure ,$ ;i
-19 i: 17 d  moneytreasure ,$  17 d  moneytreasure ,$ 17 d  moneytreasure ;i
-20 i: 1 moneytreasure ,$
-      3 moneytreasure ,$
-      6 moneytreasure ,$
-      11 moneytreasure ,$
-      13 moneytreasure ,$
+18 i: 17 d  moneytreasure .,  17 d  moneytreasure ., ;i
+19 i: 17 d  moneytreasure .,  17 d  moneytreasure ., 17 d  moneytreasure ;i
+20 i: 1 moneytreasure .,
+      3 moneytreasure .,
+      6 moneytreasure .,
+      11 moneytreasure .,
+      13 moneytreasure .,
       16 moneytreasure  ;i
 
 ;table
 
+dtable: combinedhoard
+1      i: 1 moneytreasure 1 ., magicmaptreasure ;i
+21     i: 6 moneytreasure 1 ., magicmaptreasure ;i
+41     i: 3 moneytreasure 6 ., moneytreasure .,
+       	  1 magicmaptreasure ., 15 magicmaptreasure ;i
+56     i: 1 moneytreasure ., 3 moneytreasure ., 6 moneytreasure .,
+       	  9 magicmaptreasure ., 13 magicmaptreasure ;i
+66     i: 6 moneytreasure ., 10 moneytreasure .,
+       	  6 magicmaptreasure ., 15 magicmaptreasure ;i
+76     i: 3 moneytreasure ., 6 moneytreasure ., 11 moneytreasure ., 16 moneytreasure .,
+       	  1 magicmaptreasure ., 9 magicmaptreasure ;i
+81     i: 20 moneytreasure ." ."
+          ."  Map to magic treasure: " 1 magicmaptreasure map-details ;i
+
+86     i: 20 moneytreasure ." ."
+          ."  Map to magic treasure: " 19 magicmaptreasure map-details ;i
+
+91     i: 1 moneytreasure ., 3 moneytreasure .,
+          ." nearby: " 20 magicmaptreasure ;i
+
+97     i: 11 moneytreasure ., 13 moneytreasure .,
+          ." nearby: " 15 magicmaptreasure ., 20 magicmaptreasure ;i
+;table
+
+
 dtable: II.map
 	1   i: ." False map to area"  ;i
-	6   i: ." Map to monetary treasure "
+	6   i: ." Map to monetary treasure: "
 	       d20 moneytreasure ;i
-	71  i: ." Map to magic treasure" ;i
-	91  i: ." Map to combined hoard" ;i
+	71  i: ." Map to magic treasure: "
+	       d20 magicmaptreasure ;i
+	91  i: ." Map to combined hoard: " d100 combinedhoard ;i
 ;table
 
 dtable: distance
 1      i: ."  located in labyrinth of caves found in/near lair, " ;i
 21     i: ."  located outdoors, "
-       	  d4 4 + .. ."  miles distant, " ;i
+       	  d4 4 + . ." miles distant, " ;i
 61     i: ."  located outdoors, "
-       	  d4 10 * .. ."  miles distant, " ;i
+       	  d4 10 * . ." miles distant, " ;i
 91     i: ."  located outdoors, "
-       	  5 10 roll 10 * .. ."  miles distant, " ;i
+       	  5 10 roll 10 * . ." miles distant, " ;i
 ;table
 
 dtable: location
@@ -74,15 +111,20 @@ dtable: location
        91     i: ." secreted in a town" ;i
 ;table
 
-: map-details
-  d100 distance
-  d100 location cr
+: (map-details)
+  d100  distance
+  d100  location
 ;
 
-dtable: I.map/magic
-1 i: d100 II.map
-     map-details ;i
+: just-map
+  d100 II.map
+  map-details
+;
 
+' map-details is (map-details)
+
+dtable: I.map/magic
+1 i: just-map ;i
 11 i: III.magic ;i
 
 ;table
@@ -119,7 +161,7 @@ T i: ." t magic " ;i
 U i: ." u magic " ;i
 V i: ." v magic " ;i
 
-W i: d100 II.map ;i
+W i: just-map ;i
 
 X i: ." x magic " ;i
 Y i: ." y magic " ;i
