@@ -10,59 +10,6 @@
   rot if  2drop  else included then
 ;
 
-requires MODULES
-digression read "read.fth"
-digression dice "dice.fth"
-digression table: "table.fth"
-
-
-\ string tables
-s" String table out of range" error: $tabrange
-
-: $tab: ( <name> -- addr)
-  create here 0 ,
-  does> ( index addr -- caddr len)
-
-    2dup @   ( index addr index #entries)
-    - 0<  $tabrange assert  ( index addr )
-
-    cell+ swap ( addr+ index )
-    times
-	count + 1+ \ skip zbyte
-    iterate
-    count  
-;
-
-\ Allocate space for cell count and zbyte
-: $space ( len -- )
-  cell+ 1+ allot
-;
-
-: $place ( caddr len addr -- )
-  over $space
-  2dup !  \ store len
-  cell+ swap zmove
-;
-
-: $ ( addr <char>string<char> -- addr )
-  $delimit
-  here  $place
-  1 over +!  \ count strings
-;
-
-: ;$tab ( addr -- )
-  drop
-;
-
-module: treasure
-
-: $constant ( addr len <name> -- )
-  create
-	dup ,  here swap dup 1+ allot zmove
-  does>
-	count
-;
-
 : ." postpone s" postpone type ; immediate
 
 create $pad  65540 allot
@@ -74,7 +21,8 @@ create $pad  65540 allot
 
 \ Will this fit into $pad?
 : $check ( caddr len -- caddr len|throw -1)
-  dup $pad @ + 65535 not and if -1 throw then ;
+  dup $pad @ + 65535 not and if -1 throw then
+;
 
 : $+ ( caddr len --)
   $check
@@ -88,14 +36,19 @@ create $pad  65540 allot
   pad !
   pad 1 $+
 ;
-
-: nl$  10 char$+ ;
-
-: bl$ bl char$+ ;
   
 : s>$
   s>d <# #s #> $+
 ;
+
+: .. s>d <# #s #> type ;
+
+requires MODULES
+digression read "read.fth"
+digression dice "dice.fth"
+digression table: "table.fth"
+
+module: treasure
 
 : 1000s 1000 * ;
 
@@ -121,20 +74,18 @@ digression MAGIC "magic.fth"
 
 reset
 
+\ output n without trailing space
 
-: report <$ 
-  cp @ ?dup if s>$ s" cp " $+ then
-  sp @ ?dup if s>$ s" sp " $+ then
-  ep @ ?dup if s>$ s" ep " $+ then
-  gp @ ?dup if s>$ s" gp " $+ then
-  pp @ ?dup if s>$ s" pp " $+ then
-  gem @ ?dup if nl$ s>$ s"  gems: " $+ nl$ gem @ .gems then
-  jewel @ ?dup if nl$  s>$ s" jewels: " $+ nl$  jewel @ .jewels  then
+: .report
+  cp @ ?dup if .. ." cp " then
+  sp @ ?dup if .. ." sp " then
+  ep @ ?dup if .. ." ep " then
+  gp @ ?dup if .. ." gp " then
+  pp @ ?dup if .. ." pp " then
+  gem @ ?dup if cr .. ."  gems: " cr gem @ .gems then
+  jewel @ ?dup if cr  .. ."  jewels: " cr  jewel @ .jewels  then
   magical @ if .magic then
-$>
 ;
-
-: .report report type ;
 
 : copper 1000s cp +! ;
 : silver 1000s sp +! ;
@@ -248,19 +199,3 @@ TT: Z
 
 
 ;module
-
-
-
-public:
-
-$tab: day
-
-$ "Monday"
-$ "Tuesday"
-$ "Wednesday"
-$ "Thursday"
-$ "Friday"
-$ "Saturday"
-$ "Sunday"
-
-;$tab

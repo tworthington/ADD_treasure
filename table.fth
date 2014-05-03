@@ -89,3 +89,45 @@ s" negative array index " error: arrayneg
 	swap 1+ \ skip bounds entry
 	cells +
 ;
+
+\ string tables
+: $delimit 
+  char parse   ( caddr len)
+;
+
+s" String table out of range" error: $tabrange
+
+: $tab: ( <name> -- addr)
+  create here 0 ,
+  does> ( index addr -- caddr len)
+
+    2dup @   ( index addr index #entries)
+    - 0<  $tabrange assert  ( index addr )
+
+    cell+ swap ( addr+ index )
+    times
+	count + 1+ \ skip zbyte
+    iterate
+    count  
+;
+
+\ Allocate space for cell count and zbyte
+: $space ( len -- )
+  cell+ 1+ allot
+;
+
+: $place ( caddr len addr -- )
+  over $space
+  2dup !  \ store len
+  cell+ swap zmove
+;
+
+: $ ( addr <char>string<char> -- addr )
+  $delimit
+  here  $place
+  1 over +!  \ count strings
+;
+
+: ;$tab ( addr -- )
+  drop
+;

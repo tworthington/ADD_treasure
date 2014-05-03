@@ -120,10 +120,10 @@ public:
 : .gems ( n -- )
   times
       newgem
-      swap gemtype $+ bl char$+
-      20 /mod ?dup  if  s>$ s" gp " $+  then
-      ?dup  if s>$  s" sp " $+  then
-      nl$
+      swap gemtype type space
+      20 /mod ?dup  if  .. ." gp "  then
+      ?dup  if  ..  ." sp "  then
+      cr
    iterate
 ;
 
@@ -140,19 +140,19 @@ lookup: jval ( n -- value)
 ;table
 
 lookup: jade,coral,plat
-	1 i: s" jade" ;i
-	2 i: s" coral" ;i
-	3 i: s" platinum" ;i
+	1 i: ." jade" ;i
+	2 i: ." coral" ;i
+	3 i: ." platinum" ;i
 ;table
 
-lookup: jtext ( n -- caddr len)
-	1 i: d6 4 < if s" ivory" else s" wrought silver" then ;i
-	2 i: s" wrought silver and gold" ;i
-	3 i: s" wrought gold" ;i
+lookup: jtext ( n -- )
+	1 i: d6 4 < if ." ivory" else ." wrought silver" then ;i
+	2 i: ." wrought silver and gold" ;i
+	3 i: ." wrought gold" ;i
 	4 i: d3 jade,coral,plat ;i
-	5 i: s" silver with gems" ;i
-	6 i: s" gold with gems" ;i
-	7 i: s" platinum with gems" ;i
+	5 i: ." silver with gems" ;i
+	6 i: ." gold with gems" ;i
+	7 i: ." platinum with gems" ;i
 ;table
 
 8 array jmax
@@ -177,7 +177,7 @@ dtable: jbase
 : appraise ( base1 -- base2 value )
   dup
   jval  ( base value )
-  d10 1 = if s" + " $+
+  d10 1 = if ." + "
       improve? if
       	drop 1+ 7 min recurse
       else
@@ -189,7 +189,7 @@ dtable: jbase
 : boostgem ( -- bonus )
   5000
   begin ( bonus )
-  	s" ! " $+
+  	." ! "
   	dup 640000 <  d6 1 = and
 	while 2*
   repeat
@@ -214,16 +214,19 @@ dtable: jbase
   over gems?
 ;
 
-: test 10 times jewel if ." exceptional " then . jtext type cr iterate ;
+: test 10 times jewel if ." exceptional " then
+  . jtext cr
+  iterate
+;
 
 public:
 : .jewels ( n -- )
   times
 	jewel
-	-rot s>$ s" gp, " $+
-	jtext $+ ( gem?)
-	if s"  *exceptional gem*" $+ then
-	nl$
+	-rot .. ." gp, " 
+	jtext ( gem?)
+	if ."  *exceptional gem*" then
+	cr
   iterate
 ;
 
