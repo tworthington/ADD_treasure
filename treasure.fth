@@ -12,6 +12,14 @@
 
 : ." postpone s" postpone type ; immediate
 
+: $constant ( addr len <name> -- )
+  create
+        dup ,  here swap dup 1+ allot zmove
+  does>
+        count
+;
+
+
 create $pad  65540 allot
 : <$  ( -- )
   0 $pad !
@@ -57,6 +65,12 @@ does>
   >pfa ' swap !
 ;
 
+: .,
+  [char] , emit
+  space
+;
+
+: " [char] " emit ;
 
 requires MODULES
 digression read "read.fth"

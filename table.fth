@@ -21,16 +21,19 @@ requires ERRORS
 
 : fn@ cell+ @ ;
 
+: (prep-tab) ( n addr -- n nextlink test-xt)
+  dup
+  @  ( n addr last )
+  swap
+  fn@
+;
+
 : table: ( xt <name> -- baseaddr prevdummy)
   create here  0 ,
   swap ,
   0
 does> ( n addr)
-  dup
-  @  ( n addr last )
-  swap
-  fn@
-  (table)
+  (prep-tab) (table)
 ;
 
 : extend: ( <tableName> -- baseaddr prev)

@@ -8,9 +8,13 @@ s" /dev/urandom" open/ro dup 0< throw constant rand
 ;
 
 variable (seed)
-4 (seed) rand read drop
 
-rand close drop
+: randomize
+  4 here rand read drop
+  (seed) @ here @ xor (seed) !
+;
+
+randomize
 
 : xorshift ( n -- n ) 
   dup 13 lshift xor 
@@ -50,6 +54,7 @@ rand close drop
 : 3d4 3 4 roll ;
 : 4d4 4 4 roll ;
 : 5d4 5 4 roll ;
+: 6d4 6 4 roll ;
 
 : 2d6 2 6 roll ;
 : 3d6 3 6 roll ;
