@@ -7,29 +7,6 @@ s" /dev/urandom" open/ro dup 0< throw constant rand
   here w@ swap mod 1+
 ;
 
-variable (seed)
-
-: randomize
-  4 here rand read drop
-  (seed) @ here @ xor (seed) !
-;
-
-randomize
-
-: xorshift ( n -- n ) 
-  dup 13 lshift xor 
-  dup 17 rshift xor 
-  dup  5 lshift xor
-;
-
-: rnd ( -- n)
-  (seed) @ xorshift dup (seed) !
-;
-
-: d ( s -- n )
-  rnd swap mod abs 1+
-;
-
 : d100 100 d ;
 : d20 20 d ;
 : d12 12 d ;

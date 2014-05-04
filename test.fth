@@ -4,7 +4,6 @@ treasure
 
 MAGIC
 
-: t III.B ;
+: t III.D ;
 : tt 
-  randomize
-times scrolls cr iterate ;
+times rod/staff/wand cr iterate ;
