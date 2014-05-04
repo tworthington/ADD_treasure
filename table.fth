@@ -58,6 +58,19 @@ does> ( n addr)
   swap !
 ;
 
+: (#entries) ( <tablename> -- n)
+  0 
+  ' >pf @ @ ( count next )
+  begin
+    ?dup while >link @ ( count next)
+    swap 1+ swap
+  repeat
+;
+
+: #entries ( <tablename> -- )
+ (#entries)
+  state @ if  lit  then
+; immediate
 
 : dtable:  [ ' < ] literal table: ;
 
