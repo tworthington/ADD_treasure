@@ -125,7 +125,7 @@ digression III.D 'rods.fth'
 80	i: ." Bracers of Defenselessness" ;i
 82	i: ." Brazier Commanding Fire Elementals (M)" ;i
 85	i: ." Brazier of Sleep Smoke (M)" ;i
-86	i: ." Brooch of Shielding" d10 1 = if ."  (with gems)" then ;i
+86	i: ." Broach of Shielding" d10 1 = if ."  (with gems)" then ;i
 93	i: ." Broom of Animated Attack" ;i
 94	i: ." Broom of Flying" ;i
 
@@ -204,7 +204,7 @@ digression III.D 'rods.fth'
 95	i: ." Eyes of Charming (M)" ;i
 96	i: ." Eyes of the Eagle" ;i
 98	i: ." Eyes of Minute Seeing" ;i
-100	i: ." Eyes of " d4 1 = if ." Basilisk " then ." Petrification" ;i
+100	i: ." Eyes of " d4 1 = if ." (Basilisk) " then ." Petrification" ;i
 ;table
 
 %table: III.E.3
