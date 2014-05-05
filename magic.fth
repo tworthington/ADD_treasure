@@ -207,8 +207,149 @@ digression III.D 'rods.fth'
 100	i: ." Eyes of " d4 1 = if ." (Basilisk) " then ." Petrification" ;i
 ;table
 
-%table: III.E.3
-1	i: ." Misc magic table E.3" ;i
+dtable: III.E.3
+
+	%table: figurineofwonderouspower
+	1	i: ." ebony fly" ;i
+	16	i: ." golden lions" ;i
+	31	i: ." ivory goats" ;i
+
+		%table: marbleelephant
+		1	i: ." Asiatic" ;i
+		51	i: ." African" ;i
+		91	i: ." Mammoth" ;i
+		94	i: ." Mastodon" ;i
+		;table
+	41	i: ." marble elephant (" marbleelephant ." )" ;i
+	56	i: ." obsidian steed" ;i
+	66	i: ." onyx dog" ;i
+	86	i: ." serpentine owl" ;i
+	;table
+01	i: ." Figurine of Wondrous Power - " figurineofwonderouspower ;i
+16	i: ." Flask of Curses" ;i
+17	i: ." Gauntlets of Dexterity" ;i
+19	i: ." Gauntlets of Fumbling" ;i
+21	i: ." Gauntlets of Ogre Power (C,F,T)" ;i
+23	i: ." Gauntlets of Swimming and Climbing (C,F,T)" ;i
+26	i: ." Gem of Brightness" ;i
+27	i: ." Gem of Seeing" ;i
+28	i: ." Girdle of " d10 1 = if ." Androgyny " else ." Femininity/Masculinity " then ." (C,F,T)" ;i
+
+	%table: girdleofgiantstrength
+	1	i: ." Hill" ;i
+	31	i: ." Stone" ;i
+	51	i: ." Frost" ;i
+	71	i: ." Fire" ;i
+	86	i: ." Cloud" ;i
+	96	i: ." Storm" ;i
+	;table
+29	i: ." Girdle of " girdleofgiantstrength ."  Giant Strength (C,F,T)" ;i
+30	i: ." Helm of Brilliance" ;i
+31	i: ." Helm of Comprehending Languages & Reading Magic" ;i
+36	i: ." Helm of Opposite Alignment" ;i
+38	i: ." Helm of Telepathy" ;i
+40	i: ." Helm of Teleportation" ;i
+41	i: ." Helm of Underwater Action" ;i
+46	i: ." Horn of Blasting" ;i
+47	i: ." Horn of Bubbles" ;i
+49	i: ." Horn of Collapsing" ;i
+50	i: ." Horn of the Tritons (C,F)" ;i
+	dtable: hornofvalhalla
+	1	i: ." Silver Horn of Valhalla" ;i
+	9	i: ." Brass Horn of Valhalla (C,F,T)" ;i
+	16	i: ." Bronze Horn of Valhalla (C,F)" ;i
+	19	i: ." Iron Horn of Valhalla (F)" ;i
+	;table
+54	i: d20 hornofvalhalla ;i
+61	i: ." Horseshoes of Speed" ;i
+64	i: ." Horseshoes of a Zephyr" ;i
+66	i: ." Incense of Meditation (C), " 2d4 . ." pieces" ;i
+71	i: ." Incense of Obsession (C), " 2d4 . ." pieces" ;i
+
+	dtable: iounshape
+	1	i: ." rhomboid" ;i
+	3	i: ." sphere" ;i
+	7	i: ." prism" ;i
+	10	i: ." ellipsoid" ;i
+	12	i: ." spindle" ;i
+	;table
+
+	15 array iounseen
+
+	: cleariouns  15 times 0  i iounseen ! iterate ;
+
+	\ return current state, set state
+	: iounmark? ( n -- flag)   iounseen ( addr ) dup @ -1 rot ! ;  
+
+	dtable: iounstones
+	1	i: ." pale blue rhomboid (+1 str)" ;i
+	2	i: ." scarlet and blue sphere (+1 int)" ;i
+	3	i: ." incandescent blue sphere (+1 wis)" ;i
+	4	i: ." deep red sphere (+1 dex)" ;i
+	5	i: ." pink rhomboid (+1 con)" ;i
+	6	i: ." pink and green sphere (+1 cha)" ;i
+	7	i: ." pale green prism (+1 level)" ;i
+	8	i: ." clear spindle (food & water)" ;i
+	9	i: ." iridescent spindle (air)" ;i
+	10	i: ." pearly white spindle (1hp/turn regeneration)" ;i
+	11	i: ." pale lavender ellipsoid (absorbs " d4 10 * . ." levels of up to 4th)" ;i
+	12	i: ." lavender and green ellipsoid (absorbs " 2d4 10 * . ." levels of up to 8th)" ;i
+	13	i: ." vibrant purple prism (stores " 2d6 . ." spell levels)" ;i
+	14	i: ." dusty rose prism (+1 protection)" ;i
+	15	i: ." dull grey " 14 d iounshape ."  (+10 psi str, max 50)" ;i
+	;table
+
+	: pickioun d20 dup 15 < if 
+		  	   dup iounmark? if  ( n ) drop 15  then
+	  	   then 
+		   iounstones
+	;
+
+72	i: d10 dup 1 = if drop ." Ioun Stone, " d20 iounstones else
+	       dup . ." Ioun Stones: "
+	       cleariouns
+	       times  pickioun ?., iterate
+	   then
+	;i
+
+	dtable: instrumentofthebards
+	1	i: ." Fochlucan Bandore" ;i
+	6	i: ." Mac-Fuirmidh Cittern" ;i
+	10	i: ." Doss Lute" ;i
+	13	i: ." Canaith Mandolin" ;i
+	16	i: ." Cli Lyre" ;i
+	18	i: ." Anstruth Harp" ;i
+	20	i: ." Ollamh Harp" ;i
+	;table
+73	i: ." Instrument of the Bards - " d20 instrumentofthebards ;i
+
+	%table: ironflask
+	1	i: ." empty" ;i
+	51	i: ." air elemental" ;i
+	55	i: ." demon, type 1-111" ;i
+	57	i: ." demon, type IV-VI" ;i
+	58	i: ." devil, lesser" ;i
+	60	i: ." devil, greater" ;i
+	61	i: ." diinni" ;i
+	66	i: ." earth elemental" ;i
+	70	i: ." efreeti" ;i
+	73	i: ." fire elemental" ;i
+	77	i: ." invisible stalker" ;i
+	82	i: ." mezzodaemon" ;i
+	84	i: ." night hag" ;i
+	86	i: ." nycadaemon" ;i
+	87	i: ." rakshasa" ;i
+	90	i: ." salamander" ;i
+	94	i: ." water elemental" ;i
+	98	i: ." wind walker" ;i
+	100	i: ." xorn" ;i
+	;table
+79	i: ." Iron Flask (" ironflask ." )" ;i
+81	i: ." Javelin of Lightning (F) x" d4 1+ . ;i
+86	i: ." Javelin of Piercing (F) x" 2d4 . ;i
+91	i: ." Jewel of Attacks (cursed)" ;i
+92	i: ." Jewel of Flawlessness, " d10 10 * . ." facets" ;i
+93	i: ." Keoghtom's Ointment x" d3 . ;i
 ;table
 
 %table: III.E.4
