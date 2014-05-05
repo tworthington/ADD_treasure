@@ -56,6 +56,122 @@ digression III.D 'rods.fth'
 41	i: ." Wand of " III.D.2 wandcharges ;i
 ;table
 
+%table: III.E.1
+01	i: ." Alchemy Jug" ;i
+03	i: ." Amulet of Inescapable Location (cursed)" ;i
+05	i: ." Amulet of Life Protection" ;i
+06	i: ." Amulet of the Planes" ;i
+08	i: ." Amulet of Proof Against Detection and Location" ;i
+12	i: ." Apparatus of Kwalish" ;i
+14	i: ." Arrow of Direction" ;i
+17	i: ." Artifact or Relic" ;i
+18	i: ." Bag of " 3d4 . ." Beans" ;i
+21	i: ." Bag of Devouring" ;i
+
+	%table: bagofholding
+	1	i: ." 15lb, 250lb limit, 30cuft" ;i
+	31	i: ." 15lb, 500lb limit, 70cuft" ;i
+	71	i: ." 35lb, 1000lb limit, 150cuft" ;i
+	91	i: ." 60lb, 1500lb limit, 250cuft" ;i
+	;table
+22	i: ." Bag of Holding (" bagofholding ." )" ;i
+27	i: ." Bag of Transmuting (cursed)" ;i
+
+	dtable: bagoftricks
+	1	i: ." Weasel type" ;i
+	6	i: ." Rat type" ;i
+	9	i: ." Jackel type" ;i
+	;table
+28	i: ." Bag of Tricks (" d10 bagoftricks ." )" ;i
+30	i: ." Beaker of Plentiful Potions - " d4 1+ . ." doses of: "
+	   d4 1+ times potions ?., iterate
+	;i
+32	i: ." Boat, Folding" ;i
+33	i: ." Book of Exalted Deeds (C)" ;i
+
+	: infiniteclericlevel  d10 dup 6 > if  drop d6 then .. ;
+	: infinitemulevel  d12 dup 9 > if  drop d8 then .. ;
+	%table: infinitespellclass
+	1	i: ." blank page" ;i
+	31	i: ." cleric spell (level " infiniteclericlevel ." )" ;i
+	51	i: ." druid spell (level " infiniteclericlevel ." )" ;i
+	61	i: ." magic-user spell (level " infinitemulevel ." )" ;i
+	96	i: ." illusionist spell (level " infiniteclericlevel ." )" ;i
+	;table
+34	i: ." Book of Infinite Spells - " d8 22 + dup . ." pages: "
+	   times
+		infinitespellclass ?.,
+	   iterate
+	;i
+35	i: ." Book of Vile Darkness (C)" ;i
+36	i: ." Boots of Dancing" ;i
+37	i: ." Boots of Elvenkind" ;i
+43	i: ." Boots of Levitation" ;i
+48	i: ." Boots of Speed" ;i
+52	i: ." Boots of Striding and Springing" ;i
+56	i: ." Bowl Commanding Water Elementals (M)" ;i
+59	i: ." Bowl of Watery Death (M)" ;i
+
+	%table: bracersofdefense
+	1	i: 8 . ;i
+	6	i: 7 . ;i
+	16	i: 6 . ;i
+	36	i: 5 . ;i
+	51	i: 4 . ;i
+	71	i: 3 . ;i
+	86	i: 2 . ;i
+	;table
+60	i: ." Bracers of Defense, AC " bracersofdefense ;i
+80	i: ." Bracers of Defenselessness" ;i
+82	i: ." Brazier Commanding Fire Elementals (M)" ;i
+85	i: ." Brazier of Sleep Smoke (M)" ;i
+86	i: ." Brooch of Shielding" d10 1 = if ."  (with gems)" then ;i
+93	i: ." Broom of Animated Attack" ;i
+94	i: ." Broom of Flying" ;i
+
+	%table: bucknardspurse
+	1	i: ." 26sp, 26ep, 26gp" ;i
+	51	i: ." 26cp, 26ep, 26pp" ;i
+	91	i: ." 26cp, 26ep, 26 gems" ;i
+	;table
+99	i: ." Bucknard's Everfull Purse (" bucknardspurse ." )" ;i
+;table
+
+%table: III.E.2
+1	i: ." Misc magic table E.2" ;i
+;table
+
+%table: III.E.3
+1	i: ." Misc magic table E.3" ;i
+;table
+
+%table: III.E.4
+1	i: ." Misc magic table E.4" ;i
+;table
+
+%table: III.E.5
+1	i: ." Misc magic table E.5" ;i
+;table
+
+%table: III.E.6
+1	i: ." Misc magic table E.6" ;i
+;table
+
+%table: III.E.7
+1	i: ." Misc magic table E.7" ;i
+;table
+
+
+%table: misc.magic
+1	i: III.E.1 ;i
+15	i: III.E.2 ;i
+29	i: III.E.3 ;i
+43	i: III.E.4 ;i
+57	i: III.E.5 ;i
+71	i: III.E.6 ;i
+86	i: III.E.7 ;i
+;table
+
 private:
 
 defer map-details
@@ -64,7 +180,7 @@ defer map-details
 1	i: potions ;i
 21	i: scrolls ;i
 36	i: rings ;i
-41	i: ." Rod/staff/wand " ;i
+41	i: rod/staff/wand ;i
 46	i: ." Misc. magic " ;i
 61	i: ." Armour/shield " ;i
 76	i: ." Sword " ;i

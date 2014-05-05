@@ -4,6 +4,6 @@ treasure
 
 MAGIC
 
-: t III.D ;
+: t III.E.1 ;
 : tt 
-times rod/staff/wand cr iterate ;
+times t cr iterate ;
