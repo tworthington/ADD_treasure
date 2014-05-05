@@ -138,7 +138,73 @@ digression III.D 'rods.fth'
 ;table
 
 %table: III.E.2
-1	i: ." Misc magic table E.2" ;i
+	%table: itemalignment
+	1	i: ." LG" ;i
+	11	i: ." NG" ;i
+	21	i: ." CG" ;i
+	31	i: ." CN" ;i
+	41	i: ." CE" ;i
+	51	i: ." NE" ;i
+	61	i: ." LE" ;i
+	71	i: ." LN" ;i
+	81	i: ." N" ;i
+	;table
+01	i: ." Candle of Invocation (" itemalignment ." ) (C)" ;i
+	%table: carpetofflying
+	1	i: ." 3'x5', 1 person, 42" " ;i
+	21	i: ." 4'x6', 2 persons, 36" " ;i
+	56	i: ." 5'x7', 3 persons, 30" " ;i
+	81	i: ." 6'x9', 4 persons, 23" " ;i
+	;table
+07	i: ." Carpet of Flying (" carpetofflying ." )" ;i
+09	i: ." Censer Controlling Air Elementals (M)" ;i
+11	i: ." Censer of Summoning Hostile Air Elementals (cursed) (M)" ;i
+12	i: ." Chime of Opening, " d6 10 * 20 + . ." charges" ;i
+14	i: ." Chime of Hunger (cursed)" ;i
+15	i: ." Cloak of Displacement, " d4 1 = if ." small" else ." man-sized" then ;i
+19	i: ." Cloak of Elvenkind, " d10 1 = if ." small" else ." man-sized" then ;i
+28	i: ." Cloak of Manta Ray" ;i
+31	i: ." Cloak of Poisonousness (cursed)" ;i
+	%table: cloakofprotection
+	1 	i: 1 . ;i
+	36 	i: 2 . ;i
+	66	i: 3 . ;i
+	86	i: 4 . ;i
+	96	i: 5 . ;i
+	;table
+33	i: ." Cloak of Protection, +" cloakofprotection ;i
+
+	%table: crystalball
+	1	i: ;i
+	51	i: ." , with clairaudience" ;i
+	76	i: ." , with ESP" ;i
+	91	i: ." , with telepathy" ;i
+	;table
+56	i: ." Crystal Ball (M)" crystalball ;i
+61	i: ." Crystal Hypnosis ball (cursed) (M)" ;i
+64	i: ." Cube of Frost Resistance" ;i
+62	i: ." Cube of Force" ;i
+66	i: ." Cubic Gate" ;i
+68	i: ." Daern's Instant Fortress" ;i
+70	i: ." Decanter of Endless Water" ;i
+73	i: ." Deck of Many Things, " d4 1 = if 22 else 13 then . ." plaques" ;i
+77	i: ." Drums of Deafening" ;i
+80	i: ." Dust of Appearance" ;i
+86	i: ." Dust of Disappearance" ;i
+78	i: ." Drums of Panic" ;i
+92	i: ." Dust of Sneezing and Choking" ;i
+
+	%table: efreetibottle
+	1	i: ." (insane)" ;i
+	11	i: ." (3 wishes only)" ;i
+	21	i: ;i
+	;table
+93	i: ." Efreeti Bottle" efreetibottle ;i
+94	i: ." Eversmoking Bottle" ;i
+95	i: ." Eyes of Charming (M)" ;i
+96	i: ." Eyes of the Eagle" ;i
+98	i: ." Eyes of Minute Seeing" ;i
+100	i: ." Eyes of " d4 1 = if ." Basilisk " then ." Petrification" ;i
 ;table
 
 %table: III.E.3
