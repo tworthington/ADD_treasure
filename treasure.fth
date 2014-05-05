@@ -70,6 +70,8 @@ does>
   space
 ;
 
+: ?., i 0<> if ., then ;
+
 : " [char] " emit ;
 
 requires MODULES
