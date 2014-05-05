@@ -91,6 +91,7 @@ digression III.D 'rods.fth'
 
 	: infiniteclericlevel  d10 dup 6 > if  drop d6 then .. ;
 	: infinitemulevel  d12 dup 9 > if  drop d8 then .. ;
+
 	%table: infinitespellclass
 	1	i: ." blank page" ;i
 	31	i: ." cleric spell (level " infiniteclericlevel ." )" ;i
@@ -150,6 +151,7 @@ digression III.D 'rods.fth'
 	81	i: ." N" ;i
 	;table
 01	i: ." Candle of Invocation (" itemalignment ." ) (C)" ;i
+
 	%table: carpetofflying
 	1	i: ." 3'x5', 1 person, 42" " ;i
 	21	i: ." 4'x6', 2 persons, 36" " ;i
@@ -207,7 +209,7 @@ digression III.D 'rods.fth'
 100	i: ." Eyes of " d4 1 = if ." (Basilisk) " then ." Petrification" ;i
 ;table
 
-dtable: III.E.3
+%table: III.E.3
 
 	%table: figurineofwonderouspower
 	1	i: ." ebony fly" ;i
@@ -254,6 +256,7 @@ dtable: III.E.3
 47	i: ." Horn of Bubbles" ;i
 49	i: ." Horn of Collapsing" ;i
 50	i: ." Horn of the Tritons (C,F)" ;i
+
 	dtable: hornofvalhalla
 	1	i: ." Silver Horn of Valhalla" ;i
 	9	i: ." Brass Horn of Valhalla (C,F,T)" ;i
@@ -266,6 +269,7 @@ dtable: III.E.3
 66	i: ." Incense of Meditation (C), " 2d4 . ." pieces" ;i
 71	i: ." Incense of Obsession (C), " 2d4 . ." pieces" ;i
 
+private:
 	dtable: iounshape
 	1	i: ." rhomboid" ;i
 	3	i: ." sphere" ;i
@@ -278,7 +282,7 @@ dtable: III.E.3
 
 	: cleariouns  15 times 0  i iounseen ! iterate ;
 
-	\ return current state, set state
+	\ return current state, set state to true
 	: iounmark? ( n -- flag)   iounseen ( addr ) dup @ -1 rot ! ;  
 
 	dtable: iounstones
@@ -304,7 +308,7 @@ dtable: III.E.3
 	  	   then 
 		   iounstones
 	;
-
+public: 
 72	i: d10 dup 1 = if drop ." Ioun Stone, " d20 iounstones else
 	       dup . ." Ioun Stones: "
 	       cleariouns
@@ -353,7 +357,113 @@ dtable: III.E.3
 ;table
 
 %table: III.E.4
-1	i: ." Misc magic table E.4" ;i
+1	i: ." Libram of Gainful Conjuration (M)" ;i
+2	i: ." Libram of Ineffable Damnation (M)" ;i
+3	i: ." Libram of Silver Magic (M)" ;i
+4	i: ." Lyre of Building" ;i
+5	i: ." Manual of Bodily Health" ;i
+6	i: ." Manual of Gainful Exercise" ;i
+
+	dtable: manualofgolems
+	1	i: ." Clay (C)" ;i
+	6	i: ." Flesh (M)" ;i
+	18	i: ." Iron (M)" ;i
+	19	i: ." Stone (M)" ;i
+	;table
+7	i: ." Manual of Golems - " d20 manualofgolems ;i
+8	i: ." Manual of Puissant Skill at Arms (F)" ;i
+9	i: ." Manual of Quickness of Action" ;i
+10	i: ." Manual of Stealthy Pilfering (T)" ;i
+11	i: ." Mattock of the Titans (F)" ;i
+12	i: ." Maul of the Titans" ;i
+
+	dtable: medallionofesp
+	1	i: ." 30' range" ;i
+	16	i: ." 30' range with empathy" ;i
+	19	i: ." 60' range" ;i
+	20	i: ." 90' range" ;i
+	;table
+13	i: ." Medallion of ESP, " d20 medallionofesp ;i
+16	i: ." Medallion of Thought Projection" ;i
+18	i: ." Mirror of Life Trapping, " d6 12 + . ." compartments (M)" ;i
+19	i: ." Mirror of Mental Prowess" ;i
+20	i: ." Mirror of Opposition" ;i
+21	i: ." Necklace of Adaptation" ;i
+
+	dtable: necklaceofmissiles
+	1	i: ." 3 missiles: 3d6 x2, 5d6" ;i
+	5	i: ." 5 missiles: 2d6 x2, 4d6 x2, 6d6" ;i
+	9	i: ." 7 missiles: 3d6 x4, 5d6 x2, 7d6" ;i
+	13      i: ." 9 missiles: 2d6 x4, 4d6 x2, 6d6 x2, 8d6" ;i
+	17      i: ." 7 missiles: 3d6 x2, 5d6 x2, 7d6 x2, 9d6" ;i
+	19      i: ." 9 missiles: 4d6 x4, 6d6 x2, 8d6 x2, 10d6" ;i
+	20      i: ." 9 missiles: 3d6 x2, 5d6 x2, 7d6 x2, 9d6 x2, 11d6" ;i
+	;table
+24	i: ." Necklace of Missiles, " d20 necklaceofmissiles ;i
+
+	dtable: specialprayerbeads
+	1	i: ." bead of atonement" ;i
+	6	i: ." bead of blessing" ;i
+	11	i: ." bead of curing" ;i
+	16	i: ." bead of karma" ;i
+	18	i: ." bead of summoning" ;i
+	19	i: ." bead of wind walking" ;i
+	;table
+
+28	i: ." Necklace of Prayer Beads (C): " 24 d6 + .
+	   d10 6 > if ." fancy stones, " else ." semi-precious stones, " then
+	   d4 2 + dup . ." special stones (" 
+	   times d20 specialprayerbeads ?., iterate
+	   ." )"
+	;i
+34	i: ." Necklace of Strangulation" ;i
+36	i: ." Net of Entrapment (C,F,T)" ;i
+39	i: ." Net of Snaring (C,F,T)" ;i
+43	i: ." Nolzur's Marvelous Pigments, " d4 . ." pots" ;i
+
+	%table: pearlofpower
+	1	i: ." 1st" ;i
+	26	i: ." 2nd" ;i
+	46	i: ." 3rd" ;i
+	61	i: ." 4th" ;i
+	76	i: ." 5th" ;i
+	86	i: ." 6th" ;i
+	93	i: ." 7th" ;i
+	97	i: ." 8th" ;i
+	99	i: ." 9th" ;i
+	100	i: ." 2 spells levels " d6 . ." and " d6 . ;i
+	;table
+45	i: ." Pearl of Power, "
+	   d20 1 = if ." cursed, " then  pearlofpower
+	   ."  (M)"
+	;i
+47	i: ." Pearl of Wisdom (C)" d20 1 = if ." , cursed" then ;i
+49	i: ." Periapt of Foul Rotting" ;i
+51	i: ." Periapt of Health" ;i
+
+	dtable: periaptagainspoison
+	1	i: 1 . ;i
+	9	i: 2 . ;i
+	15	i: 3 . ;i
+	19	i: 4 . ;i
+	;table
+54	i: ." Periapt of Proof Against Poison, +" d20 periaptagainspoison ;i
+61	i: ." Periapt of Wound Closure" ;i
+65	i: ." Phylactery of Faithfulness (C)" ;i
+71	i: ." Phylactery of Long Years (C)" ;i
+75	i: ." Phylactery of Monstrous Attention (C)" ;i
+77	i: ." Pipes of the Sewers" ;i
+85	i: ." Portable Hole" ;i
+
+	dtable: quallsfeathertoken
+	1      i: ." Anchor" ;i
+	5      i: ." Bird" ;i
+	8      i: ." Fan" ;i
+	11     i: ." Swan Boat" ;i
+	14     i: ." Tree" ;i
+	19     i: ." Whip" ;i
+	;table
+86	i: ." Quaal's Feather Token, " d20 quallsfeathertoken ;i
 ;table
 
 %table: III.E.5
