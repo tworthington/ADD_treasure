@@ -7,6 +7,19 @@ s" /dev/urandom" open/ro dup 0< throw constant rand
   here w@ swap mod 1+
 ;
 
+variable (seed)
+4 (seed) rand read drop
+
+: NewRandom ( -- u )
+    (seed) @
+    dup 0= or 
+    dup 13 lshift xor  
+    dup 17 rshift xor
+    dup 5 lshift xor   
+    dup (seed) ! ; 
+
+: d NewRandom swap mod abs 1+ ;
+
 : d100 100 d ;
 : d20 20 d ;
 : d12 12 d ;
