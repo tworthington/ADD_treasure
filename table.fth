@@ -1,18 +1,21 @@
 requires ERRORS
 
 \ A table is:  #lastentry test-xt
-\ An entry is: matcher previous xt
+\ An entry is: match# previous xt
 
 : >xt [ 2 cells ] literal + ;
 : >link cell+ ;
+: >match ;
+
+: previous@ ( addr -- addr2 flag ) >link @ ;
 
 \ search the links for n as long as xt returns true.
-: (table) ( n nextlink test-xt)
+: (table) ( n thisentry test-xt)
   >r
   begin
 	?dup -if  rdrop . s" Not found " type -1 throw then
 	2dup @ r@ execute while
-	>link @
+    previous@
   repeat
   rdrop
   nip
@@ -48,6 +51,8 @@ does> ( n addr)
   :noname
 ;
 
+: 0: 0 i: ;
+
 : ;i  ( previous xt/colon-sys -- )
   postpone ;  ( previous xt )
   over >xt !
@@ -58,36 +63,34 @@ does> ( n addr)
   swap !
 ;
 
-: (#entries) ( <tablename> -- n)
-  0 
-  ' >pf @ @ ( count next )
+: (autocount) ( last -- n)
+  0 swap
   begin
-    ?dup while >link @ ( count next)
-    swap 1+ swap
+        ?dup while
+        swap 1+ swap previous@
   repeat
 ;
 
+\ Update table with sequencial match numbers
+: ;auto ( baseaddr last )
+  2dup ;table
+  dup (autocount)   ( last #entries)
+  times
+        i 1+ over >match !
+        previous@
+  iterate
+  2drop
+;
+
 : #entries ( <tablename> -- )
- (#entries)
+  ' >pf @ @
+  (autocount)
   state @ if  lit  then
 ; immediate
 
 : dtable:  [ ' < ] literal table: ;
 
 : lookup: [ ' <> ] literal table: ;
-
-dtable: classify
-	 1   i: s" Rubbish " type ;i
-	 5   i: s" OK " type ;i
-	 100 i: s" Jackpot! " type ;i
-;table
-
-lookup: .square
-1 i: 1 . ;i
-2 i: 4 . ;i
-3 i: 9 . ;i
-20 i: 400 . ;i
-;table
 
 s" array index exceeded " error: arraybounds
 s" negative array index " error: arrayneg
@@ -107,7 +110,7 @@ s" negative array index " error: arrayneg
 ;
 
 \ string tables
-: $delimit 
+: $delimit
   char parse   ( caddr len)
 ;
 
@@ -124,7 +127,7 @@ s" String table out of range" error: $tabrange
     times
 	count + 1+ \ skip zbyte
     iterate
-    count  
+    count
 ;
 
 \ Allocate space for cell count and zbyte
@@ -147,3 +150,18 @@ s" String table out of range" error: $tabrange
 : ;$tab ( addr -- )
   drop
 ;
+
+: (pick1)  ( pfa -- ??? )
+  2@ ( xt last )
+  dup (autocount)  ( xt last n )
+  d  -rot swap (table)
+;
+
+: pick1 ( <name> --  ??? )
+  ' >pf @
+  state @ if
+ 	lit postpone (pick1)
+  else
+	(pick1)
+  then
+; immediate
