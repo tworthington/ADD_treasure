@@ -3,6 +3,10 @@ requires ERRORS
 
 module: MAGIC
 
+private:
+
+digression cleric1 "spelllists.fth"
+
 public:
 
 26 array magictreasure
@@ -56,7 +60,7 @@ digression III.D 'rods.fth'
 41	i: ." Wand of " III.D.2 wandcharges ;i
 ;table
 
-%table: III.E.1
+dtable: III.E.1
 01	i: ." Alchemy Jug" ;i
 03	i: ." Amulet of Inescapable Location (cursed)" ;i
 05	i: ." Amulet of Life Protection" ;i
@@ -89,15 +93,15 @@ digression III.D 'rods.fth'
 32	i: ." Boat, Folding" ;i
 33	i: ." Book of Exalted Deeds (C)" ;i
 
-	: infiniteclericlevel  d10 dup 6 > if  drop d6 then .. ;
-	: infinitemulevel  d12 dup 9 > if  drop d8 then .. ;
+	: infiniteclericlevel  d10 dup 6 > if  drop d6 then ;
+	: infinitemulevel  d12 dup 9 > if  drop d8 then  ;
 
 	%table: infinitespellclass
 	1	i: ." blank page" ;i
-	31	i: ." cleric spell (level " infiniteclericlevel ." )" ;i
-	51	i: ." druid spell (level " infiniteclericlevel ." )" ;i
-	61	i: ." magic-user spell (level " infinitemulevel ." )" ;i
-	96	i: ." illusionist spell (level " infiniteclericlevel ." )" ;i
+	31	i: ." cleric spell (" infiniteclericlevel dup .. ., clericspell ." )" ;i
+	51	i: ." druid spell (" infiniteclericlevel dup .. ., druidspell ." )" ;i
+	61	i: ." magic-user spell (" infinitemulevel dup .. ., muspell ." )" ;i
+	96	i: ." illusionist spell (level " infiniteclericlevel dup .. ., illspell ." )" ;i
 	;table
 34	i: ." Book of Infinite Spells - " d8 22 + dup . ." pages: "
 	   times
