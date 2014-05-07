@@ -25,6 +25,9 @@ does> ( addr )
   d100 swap (prep-tab) (table)
 ;
 
+\ force a number into a %table instead of letting it roll
+: %debug: ( n ) ' >pf @ (prep-tab) (table) ;
+
 private:
 
 : pot ." Potion of " ;
