@@ -474,7 +474,67 @@ public:
 ;table
 
 %table: III.E.5
-1	i: ." Misc magic table E.5" ;i
+	%table: robeofarchmagi
+	1	i: ." white" ;i
+	46	i: ." grey" ;i
+	76	i: ." black" ;i
+	;table
+1	i: ." Robe of the Archmagi (M), " robeofarchmagi ;i
+2	i: ." Robe of Blending" ;i
+9	i: ." Robe of Eyes (M)" ;i
+10	i: ." Robe of Powerlessness (M)" ;i
+11	i: ." Robe of Scintillating Colors (C,M)" ;i
+
+	%table: robeofusefulitems
+	1	i: ." bag of 100gp" ;i
+	9	i: ." silver coffer ½'x½'x1' (500gp value)" ;i
+	16	i: ." door, iron" ;i
+	23	i: ." 10 gems, 100gp each" ;i
+	31	i: ." ladder, wooden, 24' long" ;i
+	45	i: ." mule with saddle bags" ;i
+	52	i: ." pit, 10'x10'x10'" ;i
+	60	i: ." potion of extra healing" ;i
+	69	i: ." rowboat, 12' long" ;i
+	76	i: 1 spellscroll d6 d6 ;i
+	84	i: ." war dogs, pair" ;i
+	91	i: ." window, 2'x4', max 2' deep" ;i
+	97	i: robeofusefulitems .; robeofusefulitems ;i
+	;table
+12	i: ." Robe of Useful Items (M): "
+	   4d4 times robeofusefulitems ?.; iterate
+	;i
+20	i: ." Rope of Climbing" ;i
+26	i: ." Rope of Constriction" ;i
+28	i: ." Rope of Entanglement" ;i
+32	i: ." Rug of Smothering" ;i
+33	i: ." Rug of Welcome (M)" ;i
+34	i: ." Saw of Mighty Cutting (F)" ;i
+35	i: ." Scarab of Death" ;i
+36	i: ." Scarab of Enraging Enemies, " 18 d6 + . ." charges" ;i
+39	i: ." Scarab of Insainty, " 8 d8 + . ." charges" ;i
+41	i: ." Scarab of Protection"
+	   d20 1 = if ." , cursed" d10 2 < if ." , 12 charges or 24 if uncursed" else ." , 12 charges" then
+	   else ." , 12 charges" then
+	;i
+47	i: ." Spade of Colossal Excavation (F)" ;i
+48	i: ." Sphere of Annihilation (M)" ;i
+49	i: ." Stone of Controlling Earth Elementals" ;i
+51	i: ." Stone of Good Luck (Luckstone)" ;i
+53	i: ." Stone of Weight (Loadstone)" ;i
+55	i: ." Talisman of Pure Good (C)" ;i
+58	i: ." Talisman of the Sphere (M)" ;i
+59	i: ." Talisman of Ultimate Evil (C)" ;i
+61	i: ." Talisman of Zagy" ;i
+67	i: ." Tome of Clear Thought" ;i
+68	i: ." Tome of Leadership and Influence" ;i
+69	i: ." Tome of Understanding" ;i
+70	i: ." Trident of Fish Command (C,F,T), " 16 d4 + . ." charges" ;i
+77	i: ." Trident of Submission (F)" 16 d4 + . ." charges"  ;i
+79	i: ." Trident of Warning (C,F,T)"  18 d6 + . ." charges" ;i
+84	i: ." Trident of Yearning (cursed)" ;i
+86	i: ." Vacuous Grimoire" ;i
+88	i: ." Well of Many Worlds" ;i
+91	i: ." Wings of Flying" ;i
 ;table
 
 %table: III.E.6
