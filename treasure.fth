@@ -1,5 +1,7 @@
 #! /usr/local/bin/forth
 
+: ['] ' lit ; immediate
+
 : $delimit 
   char parse   ( caddr len)
 ;
@@ -70,7 +72,14 @@ does>
   space
 ;
 
+: .;
+  [char] ; emit
+  space
+;
+
 : ?., i 0<> if ., then ;
+
+: ?.; i 0<> if .; then ;
 
 : " [char] " emit ;
 
