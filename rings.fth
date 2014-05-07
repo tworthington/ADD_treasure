@@ -39,18 +39,36 @@
 61	i: ." regeneration" d10 1 = if ."  (vampiric)" then ;i
 62	i: ." shooting stars" ;i
 
-64	i: 
+	: 7-levelsspellstoring  ( # xp )
+	  swap times  ( xp )
+	  	  d6 dup 6 = if drop d4 then
+		  dup ." L" .. .:
+		  over execute ?.;
+               iterate drop
+	;
+
+	: 9-levelsspellstoring  ( # xp )
+	  swap times  ( xp )
+	  	  d8 dup 8 = if drop d6 then
+		  dup ." L" .. .:
+		  over execute ?.;
+               iterate drop
+	;
+
+	: ringofspellstoring ( # -- )
+	  ." spell storing (" 
 	  d100 71 < if  
-	        d10 1 = if ." illusionist " 1 else  ." magic-user " 0 then
+	        d10 1 = if ." illusionist) - " ['] illspell 7-levelsspellstoring
+		      	else ." magic-user) - " ['] muspell 9-levelsspellstoring
+			then
           else  \ cerical
-          	d4 1 = if ." druidic "  else  ." clerical " then  1
-	  then  ( 7-levels?)
-	  ." spell storing (" d4 1+ dup . ." spells, levels: "
-	  times dup if   d6 dup 6 = if drop d4 then 
-	  	    else d8 dup 8 = if drop d6 then
-		    then
-		.
-	  iterate ." )"  
+          	d4 1 = if ." druidic) - " ['] druidspell 7-levelsspellstoring
+		       else ." clerical) - " ['] clericspell 7-levelsspellstoring
+		       then
+	  then
+	;
+64	i: 
+	  d4 1+ ringofspellstoring
 	;i
 
 66	i: ." spell turning" ;i
