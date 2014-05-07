@@ -63,6 +63,56 @@ digression III.D 'rods.fth'
 41	i: ." Wand of " III.D.2 wandcharges ;i
 ;table
 
+%table: III.E.special
+1	i: ." Axe of the Dwarvish Lords" ;i
+2	i: ." Baba Yaga’s Hut" ;i
+3	i: ." Codex of the Infinite Planes" ;i
+
+	dtable: crownofmight
+	1	i: ." Evil" ;i
+	7	i: ." Good" ;i
+	15	i: ." Neutral" ;i
+	;table
+5	i: ." Crown of Might, " d20 crownofmight ;i
+21	i: ." Crystal of the Ebon Flame" ;i
+22	i: ." Cup and Talisman of Al’Akbar" ;i
+23	i: ." Eye of Vecna" ;i
+25	i: ." Hand of Vecna" ;i
+26	i: ." Heward’s Mystical Organ" ;i
+27	i: ." Horn of Change" ;i
+28	i: ." Invulnerable Coat of Arnd" ;i
+30	i: ." Iron Flask of Tuerny the Merciless" ;i
+32	i: ." Jacinth of Inestimable Beauty" ;i
+33	i: ." Johydee‘s Mask" ;i
+34	i: ." Kuroth’s Quill" ;i
+36	i: ." Mace of Cuthbert" ;i
+38	i: ." Machine of Lum the Mad" ;i
+39	i: ." Mighty Servant of Leuk-O" ;i
+
+	dtable: orbofdragonkind
+	1	i: ." Hatchling " ;i
+	2	i: ." Wyrmkin" ;i
+	3	i: ." Dragonette" ;i
+	4	i: ." Dragon" ;i
+	5	i: ." Great Serpent" ;i
+	6	i: ." Firedrake" ;i
+	7	i: ." Elder Wyrm" ;i
+	8	i: ." Eternal Grand Dragon" ;i
+	;table
+41	i: ." Orb of the Dragonkind, Orb of the " d8 orbofdragonkind ;i
+
+48	i: ." Orb of Might, " d20 crownofmight ;i
+64	i: ." Queen Ehlissa’s Marvelous Nightingale" ;i
+65	i: ." Recorder of Ye’Cind" ;i
+67	i: ." Ring of Gaxx" ;i
+69	i: ." Rod of Seven Parts, part " 7 d .. ;i
+75	i: ." Sceptre of Might, " d20 crownofmight ;i
+92	i: ." Sword of Kas" ;i
+93	i: ." Teeth of Dahlver-Nar, tooth #" 32 d .. ;i
+99	i: ." Throne of the Gods" ;i
+100	i: ." Wand of Orcus" ;i
+;table
+
 %table: III.E.1
 01	i: ." Alchemy Jug" ;i
 03	i: ." Amulet of Inescapable Location (cursed)" ;i
@@ -71,7 +121,7 @@ digression III.D 'rods.fth'
 08	i: ." Amulet of Proof Against Detection and Location" ;i
 12	i: ." Apparatus of Kwalish" ;i
 14	i: ." Arrow of Direction" ;i
-17	i: ." Artifact or Relic" ;i
+17	i: III.E.special ;i
 18	i: ." Bag of " 3d4 . ." Beans" ;i
 21	i: ." Bag of Devouring" ;i
 
