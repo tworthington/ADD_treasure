@@ -10,31 +10,27 @@ private:
   dup 1 = if ." of 1 spell: "  else  ." of " dup . ." spells: "  then drop
 ;
 
-: .level ( xt -- )
-  execute ( lv )
-  ." level " ..
+: .level ( n -- )
+  ." L" .. ." : "
 ;
 
 : under--? ( a x -- a-1 x flag)
   swap 1- tuck 0<>
 ;
 
-: scroll  ( n xt -- )
-  over .numspells
-  begin  ( n xt )
-  	 dup ( n xt xt )
-	 .level  ( n xt )
-	 under--? 
-  while
- 	 .,
-  repeat
+: scroll  ( n lvxt tabxt -- )
+  rot dup .numspells
+  times  ( lvxt tabxt )
+  	 over execute dup .level over execute
+  	 ?.;
+  iterate
   2drop
 ;
 
-: muscroll ( n xt ) ." Magical scroll " scroll ;
-: clscroll ." Clerical scroll " scroll ;
-: illscroll ." Illusionist scroll " scroll ;
-: drscroll ." Druidic scroll " scroll ;
+: muscroll ( n lv-xt ) ." Magical scroll " ['] muspell scroll ;
+: clscroll ." Clerical scroll " ['] clericspell scroll ;
+: illscroll ." Illusionist scroll " ['] illspell scroll ;
+: drscroll ." Druidic scroll " ['] druidspell scroll ;
 
 : (spellscroll)  ( n clxt muxt -- )
   d100 71 < if  
