@@ -63,7 +63,7 @@ digression III.D 'rods.fth'
 41	i: ." Wand of " III.D.2 wandcharges ;i
 ;table
 
-dtable: III.E.1
+%table: III.E.1
 01	i: ." Alchemy Jug" ;i
 03	i: ." Amulet of Inescapable Location (cursed)" ;i
 05	i: ." Amulet of Life Protection" ;i
@@ -440,7 +440,7 @@ public:
 	99	i: ." 9th" ;i
 	100	i: ." 2 spells levels " d6 . ." and " d6 . ;i
 	;table
-45	i: ." Pearl of Power, "
+45	i: ." Pearl of Power (M), "
 	   d20 1 = if ." cursed, " then  pearlofpower
 	   ."  (M)"
 	;i
@@ -505,7 +505,7 @@ defer map-details
 21	i: scrolls ;i
 36	i: rings ;i
 41	i: rod/staff/wand ;i
-46	i: ." Misc. magic " ;i
+46	i: misc.magic " ;i
 61	i: ." Armour/shield " ;i
 76	i: ." Sword " ;i
 87	i: ." Misc. weapon " ;i
