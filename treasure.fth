@@ -77,6 +77,9 @@ does>
   space
 ;
 
+: .:
+  [char] : emit space ;
+
 : ?., i 0<> if ., then ;
 
 : ?.; i 0<> if .; then ;
