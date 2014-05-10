@@ -1,3 +1,8 @@
+requires MODULES
+
+module: DICE
+
+private:
 \ define file handle
 
 s" /dev/urandom" open/ro dup 0< throw constant rand
@@ -8,17 +13,32 @@ s" /dev/urandom" open/ro dup 0< throw constant rand
 ;
 
 variable (seed)
-4 (seed) rand read drop
+
+: randomize 4 (seed) rand read drop ;
+
+randomize
 
 : NewRandom ( -- u )
     (seed) @
-    dup 0= or 
-    dup 13 lshift xor  
+    dup 0= or
+    dup 13 lshift xor
     dup 17 rshift xor
-    dup 5 lshift xor   
-    dup (seed) ! ; 
+    dup 5 lshift xor
+    dup (seed) ! ;
 
 : d NewRandom swap mod abs 1+ ;
+
+: roll ( n s -- tot)
+  0 rot times ( s 0 )
+    over d +  ( s 0+rand )
+  iterate
+  nip
+;
+
+: roll+ ( n s bonus -= tot )
+  >r roll r> + ;
+
+public:
 
 : d100 100 d ;
 : d20 20 d ;
@@ -30,15 +50,6 @@ variable (seed)
 : d3 3 d ;
 : d2 2 d ;
 
-: roll ( n s -- tot)
-  0 rot times ( s 0 )
-    over d +  ( s 0+rand )
-  iterate
-  nip
-;
-
-: roll+ ( n s bonus -= tot )
-  >r roll r> + ;
 
 : 2d4 2 4 roll ;
 : 3d4 3 4 roll ;
@@ -60,3 +71,5 @@ variable (seed)
 : 4d10 4 10 roll ;
 
 1 constant dice
+
+;module
