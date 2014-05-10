@@ -2,7 +2,7 @@
 
 : ['] ' lit ; immediate
 
-: $delimit 
+: $delimit
   char parse   ( caddr len)
 ;
 
@@ -21,6 +21,13 @@
         count
 ;
 
+\ bit test and set
+: btest ( b n -- flag)  1 swap lshift and 0<> ;
+
+: bt+set ( b n -- b flag)
+  2dup btest -rot ( f b n )
+  1 swap lshift or swap
+;
 
 create $pad  65540 allot
 : <$  ( -- )
@@ -46,7 +53,7 @@ create $pad  65540 allot
   pad !
   pad 1 $+
 ;
-  
+
 : s>$
   s>d <# #s #> $+
 ;
@@ -89,6 +96,9 @@ does>
 requires MODULES
 digression read "read.fth"
 digression dice "dice.fth"
+
+DICE
+
 digression table: "table.fth"
 
 module: treasure
@@ -103,7 +113,7 @@ digression GEMS "gems.fth"
 
 digression MAGIC "magic.fth"
 
-: reset 
+: reset
   0 cp !
   0 sp !
   0 ep !
@@ -188,7 +198,7 @@ variable thistype
   1 thistype +!
 ;
 
-: magic 
+: magic
   thistype @ lit
   postpone magic++
 ; immediate
@@ -202,7 +212,7 @@ TT: D 10 d8 copper ; 15 d12 silver ; 15 d6 electrum ; 50 d6 gold ; 0 ; 30 d10 ge
 TT: E 5 d10 copper ; 25 d12 silver ; 25 d6 electrum ; 25 d8 gold ; 0 ; 15 d12 gems ; 10 d8 jewels ; 25 magic ;
 TT: F 0 ; 10 d20 silver ; 15 d12 electrum ; 40 d10 gold ; 35 d8 platinum ; 20 3d10 gems ; 10 d10 jewels ; 30 magic ;
 TT: G 0 ; 0 ; 0 ; 50 d4 10 * gold ; 50 d20 platinum ; 30 5 4 roll gems ; 25 d10 jewels ; 35 magic ;
-TT: H 
+TT: H
     25 5 6 roll copper ;
     40 d100 silver ;
     40 d4 10 * electrum ;
@@ -215,7 +225,7 @@ TT: I 0 ; 0 ; 0 ; 0 ; 30 3d6 platinum ; 55 2d10 gems ; 50 d12 jewels ; 15 magic 
 TT: J 100 3 8 roll cp +! ; 0 ;  0 ; 0 ; 0 ; 0 ; 0 ; 0 ;
 TT: K 0 ; 100 3d6 sp +! ; 0 ;  0 ; 0 ; 0 ; 0 ; 0 ;
 TT: L 0 ; 0 ; 100 2d6 ep +! ; 0 ;  0 ; 0 ; 0 ; 0 ;
-TT: M 0 ; 0 ; 0 ; 100 2 4 roll gp +! ; 0 ;  0 ; 0 ; 0 ; 
+TT: M 0 ; 0 ; 0 ; 100 2 4 roll gp +! ; 0 ;  0 ; 0 ; 0 ;
 TT: N 0 ; 0 ; 0 ; 0 ; 100 d6 pp +! ; 0 ;  0 ; 0 ;
 TT: O 25 d4 copper ; 20 d3 silver ;  0 ; 0 ; 0 ; 0 ; 0 ; 0 ;
 TT: P 0 ; 30 d6 silver ; 25 d2 electrum ; 0 ; 0 ; 0 ; 0 ; 0 ;
@@ -230,14 +240,14 @@ TT: V 0 ; 0 ;  0 ; 0 ; 0 ; 0 ; 0 ; 85 magic ;
 TT: W 0 ; 0 ;  0 ; 60 5 6 roll gold ; 15 d8 platinum ; 60 d6 10 * gems ; 50 5 8 roll jewels ; 55 magic ;
 TT: X 0 ; 0 ;  0 ; 0 ; 0 ; 0 ; 0 ; 60 magic ;
 TT: Y 0 ; 0 ;  0 ; 70 2d6 gold ; 0 ; 0 ; 0 ; 0 ;
-TT: Z 
-    20 d3 copper ; 
-    25 d4 silver ; 
-    25 d4 electrum ; 
-    30 d4 gold ; 
-    30 d6 platinum ; 
-    55 d6 10 * gems ; 
-    50 5 6 roll jewels ; 
+TT: Z
+    20 d3 copper ;
+    25 d4 silver ;
+    25 d4 electrum ;
+    30 d4 gold ;
+    30 d6 platinum ;
+    55 d6 10 * gems ;
+    50 5 6 roll jewels ;
     50 magic ;
 
 
