@@ -499,10 +499,10 @@ public:
 51	i: ." Periapt of Health" ;i
 
 	dtable: periaptagainspoison
-	1	i: 1 . ;i
-	9	i: 2 . ;i
-	15	i: 3 . ;i
-	19	i: 4 . ;i
+	1	i: 1 .. ;i
+	9	i: 2 .. ;i
+	15	i: 3 .. ;i
+	19	i: 4 .. ;i
 	;table
 54	i: ." Periapt of Proof Against Poison, +" d20 periaptagainspoison ;i
 61	i: ." Periapt of Wound Closure" ;i
@@ -588,13 +588,138 @@ public:
 ;table
 
 %table: III.E.6
-1	i: ." Misc magic table E.6" ;i
+	%table: amuletversusundead
+	1	i: 5 .. ;i
+	31	i: 6 .. ;i
+	56	i: 7 .. ;i
+	76	i: 8 .. ;i
+	91	i: 9 .. ;i
+	;table
+01	i: ." Amulet Versus Undead, " amuletversusundead ." th level" ;i
+05	i: ." Anything Item" ;i
+06	i: ." Beads of Force (x" d4 4 + .. ." )" ;i
+08	i: ." Boccob’s Blessed Book (M)" ;i
+15	i: ." Boots of the North" ;i
+
+	lookup: bootsofvariedtracks
+	1	i: ." basilisk" ;i	9	i: ." horse" ;i
+	2	i: ." bear" ;i		10	i: d2 1 = if ." lion" else ." giant lynx" then ;i
+	3	i: ." boar" ;i		11	i: ." mule" ;i
+	4	i: ." bull" ;i		12	i: ." rabbit" ;i
+	5	i: ." camel" ;i		13	i: ." stag" ;i
+	6	i: ." dog" ;i		14	i: d2 1 = if ." tiger" else ." leopard" then ;i
+	7	i: ." giant, hill" ;i	15	i: ." wolf" ;i
+	8	i: ." goat" ;i	   	16	i: ." wyvern" ;i
+	;table
+	: picktrack ( flags -- flags)
+	  begin
+		16 d tuck  ( n f n )
+		bt+set while  \ already taken, so scrap and try again
+		       nip
+ 	  repeat
+	  swap bootsofvariedtracks
+	;
+	: variedtracks ( n -- )
+	  0 swap times
+	    picktrack ?.,
+	  iterate drop
+	;
+17	i: ." Boots of Varied Tracks: " 4 variedtracks ;i
+
+	lookup: wingedboots
+	1	i: ." 15" " ." , class A" ;i
+	2	i: ." 18" " ." , class B" ;i
+	3	i: ." 21" " ." , class C" ;i
+	4	i: ." 24" " ." , class D" ;i
+	;table
+20	i: ." Boots, Winged (" d4 wingedboots ." )" ;i
+21	i: ." Bracers of Archery (F)" ;i
+25	i: ." Bracers of Brachiation" ;i
+27	i: ." Chime of Interruption" ;i
+29	i: ." Cloak of Arachnida" ;i
+31	i: ." Cloak of the Bat" ;i
+35	i: ." Cyclocone (M)" ;i
+
+	%table: dartofhornets
+	1	i: ." +1 to-hit x" 5d4 .. ;i
+	41	i: ." +2 to-hit x" 4d4 .. ;i
+	71	i: ." +3 to-hit x" 3d4 .. ;i
+	91	i: ." +4 to-hit x" 2d4 .. ;i
+	;table
+37	i: ." Dart of the Hornets’ Nest, " dartofhornets ;i
+41	i: ." Deck of Illusions" ;i
+43	i: ." Dicerion of Light & Darkness (C)" ;i
+45	i: ." Dust of Dryness, " 10 d10 + . ." pinches" ;i
+48	i: ." Dust of Illusion, " 10 d10 + . ." pinches"  ;i
+51	i: ." Dust of Tracelessness, " 12 d12 + . ." pinches"  ;i
+
+	lookup: eggofdesire
+	1	i: ." Black" ;i
+	2	i: ." Bone" ;i
+	3	i: ." Crystal" ;i
+	4	i: ." Golden" ;i
+	5	i: ." Scarlet" ;i
+	;table
+55	i: ." Egg of Desire, " 5 d eggofdesire ;i
+57	i: ." Egg of Reason (" d10 7 < if ." Int)" else ." Wis)" then ;i
+61	i: ." Egg of Shattering" ;i
+63	i: ." Gem of Insight" ;i
+66	i: ." Girdle of Dwarvenkind" ;i
+69	i: ." Girdle of Many Pouches" ;i
+77	i: ." Gloves of Missile Snaring" ;i
+80	i: ." Gloves of Thievery" ;i
+84	i: ." Hat of Difference" ;i
+89	i: ." Hat of Disguise" ;i
+96	i: ." Hat of Stupidity" ;i
 ;table
 
 %table: III.E.7
-1	i: ." Misc magic table E.7" ;i
-;table
+1	i: ." Heward’s Handy Haversack" ;i
+6	i: ." Horn of Fog" ;i
+11	i: ." Horn of Goodness (Evil)" ;i
+13	i: ." Iron Bands of Bilarro" ;i
+15	i: ." Lens of Detection" ;i
+19	i: ." Lens of Ultravision" ;i
+22	i: ." Mantle of Celestian" ;i
+24	i: ." Murlynd’s Spoon" ;i
+28	i: ." Pearl of the Sirines" ;i
+30	i: ." Philosopher’s Stone" ;i
+32	i: ." Pouch of Accessibility" ;i
+38	i: ." Prison of Zagyg (M)" ;i
+39	i: ." Quiver of Ehlonna" ;i
+41	i: ." Robe of Stars (M)" ;i
+43	i: ." Robe of Vermin (M)" ;i
 
+	%table: scarabvsgolems
+	1	i: ." flesh" ;i
+	31	i: ." clay" ;i
+	56	i: ." stone" ;i
+	76	i: ." iron" ;i
+	86	i: ." flesh, clay, and wood" ;i
+	96	i: ." any golem" ;i
+	;table
+49	i: ." Scarab Versus Golems (" scarabvsgolems ." )" ;i
+51	i: ." Shadow Lanthorn" ;i
+55	i: ." Sheet of Smallness" ;i
+58	i: ." Shoes of Fharlanghn" ;i
+60	i: ." Slippers of Kicking" ;i
+65	i: ." Slippers of Spider Climbing" ;i
+71	i: ." Sovereign Glue, " d10 . ." oz" ;i
+73	i: ." Spoon of Stirring" ;i
+78	i: ." Stone Horse, " d2 1 = if ." courser" else ." destrier" then ;i
+82	i: ." Ultimate Solution" ;i
+85	i: ." Wind Fan" ;i
+89	i: ." Zagyg’s Flowing Flagon" ;i
+	dtable: zagygsspellcomponent
+	1	i: 2 ;i
+	4	i: 3 ;i
+	7	i: 4 ;i
+	11	i: 5 ;i
+	15	i: 6 ;i
+	20	i: 7 ;i
+	;table 
+93	i: ." Zagyg’s Spell Component (" d20 zagygsspellcomponent . ." times/day)" ;i
+;table
 
 %table: misc.magic
 1	i: III.E.1 ;i
