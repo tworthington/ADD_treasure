@@ -75,6 +75,13 @@ digression III.E.1 'miscmagic.fth'
 86	i: III.E.7 ;i
 ;table
 
+digression III.F 'armour_shield.fth'
+
+%table: armour/shield
+1      i: III.F ;i
+51     i: III.F.2 ;i
+;table
+
 private:
 
 defer map-details
