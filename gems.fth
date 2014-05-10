@@ -10,7 +10,7 @@ module: GEMS
 ;
 
 create values ( sp )
-1 , 5 , 10 , 20 , 5 gp, 
+1 , 5 , 10 , 20 , 5 gp,
 10 gp, 50 gp, 100 gp, 500 gp, 1000 gp, 5000 gp,
 10000 gp, 25000 gp, 50000 gp, 100000 gp, 250000 gp, 500000 gp, 1000000 gp,
 
@@ -75,7 +75,7 @@ private:
 \ with appraise having started with one, hence "4"
 : poor ( base depth -- value)
   tuck 4 > if
-        base>value 
+        base>value
   else
 	9 d 1+  >r
   	r@ 2 = if doublebase then
@@ -102,7 +102,7 @@ private:
 ;
 
 : appraise ( base -- base value)
-  dup d10 >r 
+  dup d10 >r
   r@ 1 = if base++ 1 good then
   r@ 2 = if doublebase then
   r@ 3 = if base>value  d6 10 * 100 + 100  */ then  \ +10-60%
@@ -223,7 +223,7 @@ public:
 : .jewels ( n -- )
   times
 	jewel
-	-rot .. ." gp, " 
+	-rot .. ." gp, "
 	jtext ( gem?)
 	if ."  *exceptional gem*" then
 	cr
