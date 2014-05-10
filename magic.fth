@@ -92,7 +92,7 @@ defer map-details
 36	i: rings ;i
 41	i: rod/staff/wand ;i
 46	i: misc.magic ;i
-61	i: ." Armour/shield " ;i
+61	i: armour/shield ;i
 76	i: ." Sword " ;i
 87	i: ." Misc. weapon " ;i
 ;table
