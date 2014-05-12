@@ -26,7 +26,9 @@ randomize
     dup 5 lshift xor
     dup (seed) ! ;
 
+public:
 : d NewRandom swap mod abs 1+ ;
+
 
 : roll ( n s -- tot)
   0 rot times ( s 0 )
@@ -34,11 +36,6 @@ randomize
   iterate
   nip
 ;
-
-: roll+ ( n s bonus -= tot )
-  >r roll r> + ;
-
-public:
 
 : d100 100 d ;
 : d20 20 d ;
