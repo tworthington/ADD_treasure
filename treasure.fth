@@ -27,13 +27,21 @@ decimal
         count
 ;
 
-\ bit test and set
+\ bit test and set/clear, b=bitflags, n=bit to test
+
 : btest ( b n -- flag)  1 swap lshift and 0<> ;
 
 : bt+set ( b n -- b flag)
   2dup btest -rot ( f b n )
   1 swap lshift or swap
 ;
+
+: bt+clear ( b n b flag -- b flag)
+  2dup btest -rot
+  1 swap lshift not and swap
+;
+
+: binary 2 base ! ;
 
 create $pad  65540 allot
 : <$  ( -- )
