@@ -1,6 +1,8 @@
 #! /usr/local/bin/forth
 
-: ['] ' lit ; immediate
+decimal
+
+: ['] ' state @ if lit then ; immediate
 
 : $delimit
   char parse   ( caddr len)
