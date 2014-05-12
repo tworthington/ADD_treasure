@@ -16,6 +16,10 @@ decimal
 
 : ." postpone s" postpone type ; immediate
 
+: .' [char] ' parse
+  state @ if postpone 2literal then postpone type
+; immediate
+
 : $constant ( addr len <name> -- )
   create
         dup ,  here swap dup 1+ allot zmove
