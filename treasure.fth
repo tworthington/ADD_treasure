@@ -125,6 +125,12 @@ digression GEMS "gems.fth"
 
 digression MAGIC "magic.fth"
 
+: 2variable
+  create 0 , 0 ,
+;
+
+2variable factor
+
 : reset
   0 cp !
   0 sp !
@@ -134,6 +140,7 @@ digression MAGIC "magic.fth"
   0 gem !
   0 jewel !
   0 magical !
+  1 1 factor 2!
   clearmagic
 ;
 
@@ -166,6 +173,12 @@ reset
   1 magical !
 ;
 
+: >factor
+  2dup > if 2drop 120 100 then swap factor 2!
+;
+
+: factor*  factor 2@ */ ;
+
 \ TT consists of a list of pairs:
 \ %chance, xt for generating result
 \ when called, runs down the pairs and rolls chance and calls xt
@@ -174,7 +187,7 @@ reset
   8 times  ( addr )
       dup>r
       @
-      d100 < -if r@ cell+ @ execute then
+      d100 factor* < -if r@ cell+ @ execute then
       r> cell+ cell+
   iterate drop
 ;
