@@ -51,6 +51,11 @@ does> ( n addr)
   :noname
 ;
 
+: e: dup >r
+  i:
+  r> lit
+;
+
 : 0: 0 i: ;
 
 : ;i  ( previous xt/colon-sys -- )
@@ -58,6 +63,7 @@ does> ( n addr)
   over >xt !
 ; immediate
 
+: ;e postpone ;i ; immediate
 
 : ;table ( baseaddr last )
   swap !
