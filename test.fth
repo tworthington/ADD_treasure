@@ -4,6 +4,6 @@ treasure
 
 MAGIC
 
-: t III.E.1 ;
+: t swords ;
 : tt 
 times t cr iterate ;
