@@ -103,8 +103,6 @@ requires MODULES
 digression read "read.fth"
 digression dice "dice.fth"
 
-DICE
-
 digression table: "table.fth"
 
 module: treasure
