@@ -108,12 +108,17 @@ does>
 : " [char] " emit ;
 
 requires MODULES
+
+silent-modules
+
 digression read "read.fth"
+
+module: treasure
+
 digression dice "dice.fth"
 
 digression table: "table.fth"
 
-module: treasure
 
 : 1000s 1000 * ;
 
@@ -142,6 +147,7 @@ digression MAGIC "magic.fth"
   0 magical !
   1 1 factor 2!
   clearmagic
+  randomize
 ;
 
 reset
@@ -230,6 +236,7 @@ variable thistype
 
 0 thistype !
 
+public:
 TT: A 25 d6 copper ; 30 d6 silver ; 35 d6 electrum ; 40 d10 gold ; 25 d4 platinum ; 60 4d10 gems ; 50 3 10 roll jewels ; 30 magic ;
 TT: B 50 d8 copper ; 25 d6 silver ; 25 d4 electrum ; 25 d3 gold ; 0 ; 30 d8 gems ; 20 d4 jewels ; 10 magic ;
 TT: C 20 d12 copper ; 30 d6 silver ; 10 d4 electrum ; 0 ; 0 ; 25 d6 gems ; 20 d3 jewels ; 10 magic ;
@@ -274,6 +281,5 @@ TT: Z
     55 d6 10 * gems ;
     50 5 6 roll jewels ;
     50 magic ;
-
 
 ;module
