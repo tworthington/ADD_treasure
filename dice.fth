@@ -67,6 +67,8 @@ public:
 : 3d10 3 10 roll ;
 : 4d10 4 10 roll ;
 
+: 2d12 2 12 roll ;
+
 1 constant dice
 
 ;module
