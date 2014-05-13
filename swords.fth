@@ -120,6 +120,7 @@ decimal
 variable primes?
 11 constant #primes
 #primes array primaries
+#primes cells allot
 
 : primaries++ ( n -- ) dup if 2 swordego +! then  1 swap primaries +!  -1 primes? ! ;
 
@@ -129,7 +130,7 @@ variable primes?
 variable extras?
 18 constant #extras
 #extras array extras
-
+#extras cells allot
 : extras++  dup if 4 swordego +! then  1 swap extras +!  -1 extras? ! ;
 
 : -extras #extras times 0 i extras ! iterate 0 extras? ! ;

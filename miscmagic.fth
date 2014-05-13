@@ -270,7 +270,7 @@ private:
 	12	i: ." spindle" ;i
 	;table
 
-	15 array iounseen
+	15 array iounseen 15 cells allot
 
 	: cleariouns  15 times 0  i iounseen ! iterate ;
 
