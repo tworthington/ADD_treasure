@@ -106,6 +106,89 @@ digression III.G 'swords.fth'
   swordstab
 ;
 
+%table: III.H
+01	i: 2d12 .. ." x Arrow, +1" ;i
+09	i: 2d8 .. ." x Arrow, +2" ;i
+13	i: 2d6 .. ." x Arrow, +3" ;i
+
+	dtable: arrowofslaying
+1	i: ." Arachnids" ;i
+2	i: ." Avians" ;i
+3	i: ." Bards" ;i
+4	i: ." Clerics" ;i
+5	i: ." Demons" ;i
+6	i: ." Devils" ;i
+7	i: ." Dragons" ;i
+8	i: ." Druids" ;i
+9	i: ." Elementals" ;i
+10	i: ." Fighters" ;i
+11	i: ." Giants" ;i
+12	i: ." Golems" ;i
+13	i: ." Illusionists" ;i
+14	i: ." Ki-rin" ;i
+15	i: ." Magic-users" ;i
+16	i: ." Mammals" ;i
+17	i: ." Monks" ;i
+18	i: ." Paladins" ;i
+19	i: ." Rangers" ;i
+20	i: ." Reptiles" ;i
+21	i: ." Sea Monsters" ;i
+22	i: ." Thieves" ;i
+23	i: ." Titans" ;i
+24	i: ." Undead" ;i
+;table
+15	i: ." Arrow of Slaying " 24 d arrowofslaying ;i
+16	i: ." Axe +1" ;i
+21	i: ." Axe +2" ;i
+23	i: ." Axe +2, Throwing" ;i
+24	i: ." Axe +3" ;i
+25	i: ." Battle Axe +1" ;i
+28	i: ." Bolt +2, 2-20 in number" ;i
+33	i: ." Bow +1" ;i
+
+: heavy? d10 1 = if ." Heavy " then ;
+36	i: heavy? ." Crossbow of Accuracy, +3" ;i
+37	i: heavy? ." Crossbow of Distance" ;i
+38	i: heavy? ." Crossbow of Speed" ;i
+39	i: ." Dagger +1, +2 vs. creatures smaller than man-sized" ;i
+47	i: ." Dagger +2, +3 vs. creatures larger than man-sized" ;i
+51	i: ." Dagger of Venom" ;i
+52	i: ." Flail +1" ;i
+57	i: ." Hammer +1" ;i
+61	i: ." Hammer +2" ;i
+63	i: ." Hammer +3, Dwarven Thrower" ;i
+64	i: ." Hammer of Thunderbolts" ;i
+65	i: ." Javelin +2" ;i
+68	i: ." Mace +1" ;i
+73	i: ." Mace +2" ;i
+76	i: ." Mace of Disruption" ;i
+77	i: ." Mace +4" ;i
+78	i: ." Military Pick +1" ;i
+81	i: ." Morning Star +1" ;i
+
+	%table: magicscimitar
+	1	i: ." , +1" ;i
+	46	i: ." , +2" ;i
+	66	i: ." , +3" ;i
+	81	i: ." , +4" ;i
+	91	i: ." , +5" ;i
+	96	i: ."  of wounding" ;i
+	99	i: ."  of sharpness" ;i
+	;table
+84	i: ." Scimitar" d10 1 = if ."  (khopesh)" then  magicscimitar ;i
+89	i: ." Sling of Seeking +2" ;i
+90	i: ." Spear +1" ;i
+95	i: ." Spear +2" ;i
+97	i: ." Spear +3" ;i
+98	i: ." Spear, Cursed Backbiter" ;i
+100	i: ." Trident (Military Fork) +3" ;i
+;table
+
+%table: misc.weapons
+1	i: III.H ;i
+\ 51	i: III.H2 ;i
+;table
+
 private:
 
 defer map-details
