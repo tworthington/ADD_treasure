@@ -143,7 +143,7 @@ digression III.G 'swords.fth'
 23	i: ." Axe +2, Throwing" ;i
 24	i: ." Axe +3" ;i
 25	i: ." Battle Axe +1" ;i
-28	i: ." Bolt +2, 2-20 in number" ;i
+28	i: 2d10 ." x Bolt +2" ;i
 33	i: ." Bow +1" ;i
 
 : heavy? d10 1 = if ." Heavy " then ;
@@ -167,15 +167,12 @@ digression III.G 'swords.fth'
 81	i: ." Morning Star +1" ;i
 
 	%table: magicscimitar
-	1	i: ." , +1" ;i
-	46	i: ." , +2" ;i
-	66	i: ." , +3" ;i
-	81	i: ." , +4" ;i
-	91	i: ." , +5" ;i
+	1	i: ." , +2" ;i
 	96	i: ."  of wounding" ;i
 	99	i: ."  of sharpness" ;i
 	;table
-84	i: ." Scimitar" d10 1 = if ."  (khopesh)" then  magicscimitar ;i
+: khopesh? ." Scimitar" d10 1 = if ."  (khopesh)" then ;
+84	i:  khopesh? magicscimitar ;i
 89	i: ." Sling of Seeking +2" ;i
 90	i: ." Spear +1" ;i
 95	i: ." Spear +2" ;i
@@ -184,9 +181,106 @@ digression III.G 'swords.fth'
 100	i: ." Trident (Military Fork) +3" ;i
 ;table
 
+%table: III.H.2
+01	i: 2d4 .. ." x Arrow, +4, 2-8" ;i
+03	i: ." Axe, +4" ;i
+
+	dtable: axeofhurling
+	1	i: 1 ;i
+	6	i: 2 ;i
+	11	i: 3 ;i
+	16	i: 4 ;i
+	20	i: 5 ;i
+	;table
+04	i: ." Axe of Hurling, +" d20 axeofhurling .. ;i
+05	i: ." Battle Axe, +2" ;i
+11	i: ." Battle Axe, +3" ;i
+14	i: 6d6 .. ." x Bolt, +1, 6-36" ;i
+21	i: 3d4 .. ." x Bolt, +3, 3-12 in number" ;i
+23	i: 5d4 .. ." x Bullet, Sling,, +1" ;i
+28	i: 3d4 .. ." x Bullet, Sling,, +2" ;i
+32	i: 2d4 .. ." x Bullet, Sling,, +3" ;i
+35	i: d4 .. ." x Bullet, Sling, of Impact" ;i
+36	i: ." Dagger, +1" ;i
+41	i: ." Dagger, +2" ;i
+44	i: ." Dagger, +2, Longtooth" ;i
+45	i: ." Dagger, +3" ;i
+	%table: daggerofthrowing
+	1	i: 1 ;i
+	36	i: 2 ;i
+	66	i: 3 ;i
+	91	i: 4 ;i
+	;table
+47	i: ." Dagger of Throwing, +" daggerofthrowing . ;i
+48	i: ." Dart, +1, 3-12 in number" ;i
+52	i: ." Dart, +2, 2-8 in number" ;i
+55	i: ." Dart, +3, 1-4 in number" ;i
+57	i: d2 .. ." x Dart of Homing" ;i
+58	i: ." Flail, +2" ;i
+62	i: ." Hammer, +4" ;i
+	%table: hornblade
+	1	i: ." knife-sized, +1" ;i
+	21	i: ." knife-sized, +2" ;i
+	36	i: ." dagger-sized, +1" ;i
+	51	i: ." dagger-sized, +2" ;i
+	71	i: ." scimitar-sized, +2" ;i
+	91	i: ." scimitar-sized, +3" ;i
+	;table
+63	i: ." Hornblade, " hornblade ;i
+64	i: ." Javelin, +1" ;i
+69	i: ." Javelin, +3" ;i
+71	i: ." Knife, +1" ;i
+76	i: ." Knife, +2" ;i
+	dtable: knifebuckle
+	1	i: 1 ;i
+	5	i: 2 ;i
+	8	i: 3 ;i
+	10	i: 4 ;i
+	;table
+79	i: ." Knife, Buckle, +" d10 knifebuckle . ;i
+80	i: ." Lance, +1" ;i
+82	i: ." Mace, +3" ;i
+84	i: ." Morning Star, +2" ;i
+	dtable: polearms
+	0: 	." Bardiche" ;i
+	0:	." Bec de Corbin" ;i
+	0:	." Bill-Guisarme" ;i
+	0:	." Fauchard" ;i
+	0:	." Fauchard-Fork" ;i
+	0:	." Glave" ;i
+	0:	." Glave-Guisarme" ;i
+	0:	." Guisarme-Voulge" ;i
+	0:	." Halberd" ;i
+	0:	." Hammer, Lucern" ;i
+	0:	." Hook, Fauchard" ;i
+	0:	." Military Fork" ;i
+	0:	." Partisan" ;i
+	0:	." Pike" ;i
+	0:	." Ranseur" ;i
+	0:	." Spetum" ;i
+	0:	." Voulge" ;i
+	;table
+
+87	i: ." Pole Arm (" pick1 polearms ." ), +1" ;i
+	dtable: magicstaff
+	1	i: 1 ;i
+	6	i: 2 ;i
+	10	i: 3 ;i
+	14	i: 4 ;i
+	18	i: 5 ;i
+	;table
+88	i: ." Quarterstaff, Magic, +" d20 magicstaff . ;i
+90	i: khopesh? ." , +1" ;i
+93	i: khopesh? ." , +3" ;i
+95	i: khopesh? ." of Speed" ;i
+96	i: khopesh? ." , +4" ;i
+97	i: ." Spear, +4" ;i
+100	i: ." Spear, +5" ;i
+;table
+
 %table: misc.weapons
 1	i: III.H ;i
-\ 51	i: III.H2 ;i
+51	i: III.H.2 ;i
 ;table
 
 private:
@@ -201,7 +295,7 @@ dtable: III.magic
 46	i: misc.magic cr ;i
 61	i: armour/shield cr ;i
 76	i: swords cr ;i
-87	i: ." Misc. weapon " cr ;i
+87	i: misc.weapons cr ;i
 ;table
 
 \ GEMS
