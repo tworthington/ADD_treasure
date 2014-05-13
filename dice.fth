@@ -14,10 +14,6 @@ s" /dev/urandom" open/ro dup 0< throw constant rand
 
 variable (seed)
 
-: randomize 4 (seed) rand read drop ;
-
-randomize
-
 : NewRandom ( -- u )
     (seed) @
     dup 0= or
@@ -70,5 +66,9 @@ public:
 : 2d12 2 12 roll ;
 
 1 constant dice
+
+: randomize 4 (seed) rand read drop ;
+
+randomize
 
 ;module
