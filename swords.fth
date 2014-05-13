@@ -10,7 +10,7 @@ create langtrack 100 cells allot
 
 : alanguage
   begin
-    language ( n caddr len )
+    languagetab ( n caddr len )
     rot dup cells langtrack + @ while \ failed
     drop 2drop
   repeat
