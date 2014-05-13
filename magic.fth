@@ -264,13 +264,13 @@ R i: ." r magic " ;i
 
 S i: 2d4 times potions ?.; iterate ;i
 T i: d4 times scrolls ?.; iterate ;i
-U i: ." u magic " ;i
-V i: ." v magic " ;i
+U i: potions cr rings cr rod/staff/wand cr misc.magic cr armour/shield cr swords cr misc.weapons cr ;i
+V i: 2 times rings cr rod/staff/wand cr misc.magic cr armour/shield cr swords cr misc.weapons cr iterate ;i
 
 W i: just-map ;i
 
 X i: misc.magic .; potions ;i
-Y i: ." y magic " ;i
+Y i: ." y magic" ;i
 
 Z i: d100 III.magic ., d100 III.magic ., d100 III.magic   ;i
 
