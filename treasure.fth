@@ -254,7 +254,7 @@ TT: M 0 ; 0 ; 0 ; 100 2 4 roll gp +! ; 0 ;  0 ; 0 ; 0 ;
 TT: N 0 ; 0 ; 0 ; 0 ; 100 d6 pp +! ; 0 ;  0 ; 0 ;
 TT: O 25 d4 copper ; 20 d3 silver ;  0 ; 0 ; 0 ; 0 ; 0 ; 0 ;
 TT: P 0 ; 30 d6 silver ; 25 d2 electrum ; 0 ; 0 ; 0 ; 0 ; 0 ;
-TT: Q 0 ; 0 ;  0 ; 0 ; 0 ; 0 ; 50 d4 gems ; 0 ;
+TT: Q 0 ; 0 ;  0 ; 0 ; 0 ; 50 d4 gems ; 0 ; 0 ;
 : Qx5 Q Q Q Q Q ;
 : Qx10 Qx5 Qx5 ;
 TT: R 0 ; 0 ; 0 ; 40 2 4 roll gold ; 50 d6 10 * platinum ; 55 4 8 roll gems ; 45 d12 jewels ; 0 ;
