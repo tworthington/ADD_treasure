@@ -14,17 +14,92 @@ create values ( sp )
 10 gp, 50 gp, 100 gp, 500 gp, 1000 gp, 5000 gp,
 10000 gp, 25000 gp, 50000 gp, 100000 gp, 250000 gp, 500000 gp, 1000000 gp,
 
+lookup: ornimentalnames
+0:	." Azurite" ;i
+0:	." Bonded Agate" ;i
+0:	." Blue Quartz" ;i
+0:	." Eye Agate" ;i
+0:	." Hematite" ;i
+0:	." Lapis Lazuli" ;i
+0:	." Malachite" ;i
+0:	." Moss Agate" ;i
+0:	." Obsidian" ;i
+0:	." Rhodochrosite" ;i
+0:	." Tiger Eye" ;i
+0:	." Turquoise" ;i
+;auto
+
+lookup: semipreciousnames
+0:	." Bloodstone" ;i
+0:	." Carnelian" ;i
+0:	." Chalcedony" ;i
+0:	." Chrysoprose" ;i
+0:	." Citrine" ;i
+0:	." Jasper" ;i
+0:	." Moonstone" ;i
+0:	." Onyx" ;i
+0:	." Rock Crystal" ;i
+0:	." Sardonyx" ;i
+0:	." Smoky Quartz" ;i
+0:	." Star Rose Quartz" ;i
+0:	." Zircon" ;i
+;auto
+
+lookup: fancystonenames
+0:	." Amber" ;i
+0:	." Alexandrite" ;i
+0:	." Amethyst" ;i
+0:	." Chrysoberyl" ;i
+0:	." Coral" ;i
+0:	." Garnet, red" ;i
+0:	." Garnet, brown-green" ;i
+0:	." Jade" ;i
+0:	." Jet" ;i
+0:	." Pearl" ;i
+0:	." Spinel, red" ;i
+0:	." Spinel, green" ;i
+0:	." Tourmaline" ;i
+;auto
+
+lookup: fancypreciousnames
+0:	." Aquamarine" ;i
+0:	." Garnet, violet" ;i
+0:	." Black Pearl" ;i
+0:	." Peridot" ;i
+0:	." Spinel, deep blue" ;i
+0:	." Topaz" ;i
+;auto
+
+lookup: gemnames
+0:	." Black Opal" ;i
+0:	." Diamond" ;i
+0:	." Emerald" ;i
+0:	." Fire Opal" ;i
+0:	." Opal" ;i
+0:	." Oriental Amethyst" ;i
+0:	." Oriental Topaz" ;i
+0:	." Sapphire" ;i
+0:	." Star Ruby" ;i
+0:	." Star Sapphire" ;i
+;auto
+
+lookup: jewelstonename
+0:	." Black Sapphire" ;i
+0:	." Diamond, blue-white" ;i
+0:	." Jacinth" ;i
+0:	." Oriental Emerald" ;i
+0:	." Ruby" ;i
+;auto
 
 public:
-$tab: gemtype
-      $ "Dummy" $ "Dummy" $ "Dummy" $ "Dummy" $ "Dummy"
-      $ "Ornimental stone"
-      $ "Semi-precious stone"
-      $ "Fancy stone"
-      $ "Fancy precious stone"
-      $ "Gem stone"
-      $ "Jewel stone"
-;$tab
+dtable: gemtype ( s.p.value --  )
+0	i: ." Ornimental stone (" pick1 ornimentalnames ." )" ;i
+1000	i: ." Semi-precious stone (" pick1 semipreciousnames ." )" ;i
+2000	i: ." Fancy stone (" pick1 fancystonenames ." )" ;i
+10000	i: ." Fancy precious stone (" pick1 fancypreciousnames ." )" ;i
+20000	i: ." Gem stone (" pick1 gemnames ." )" ;i
+100000	i: ." Jewel stone (" pick1 jewelstonename ." )" ;i
+;table
 
 private:
 
@@ -91,7 +166,7 @@ private:
 : good ( base depth -- value)
   tuck 6 > if
        base>value
-  else
+  else 
 	d8  >r
 	r@ 1 = if base++ over 1+ recurse then
 	r@ 2 = if doublebase then
@@ -120,7 +195,7 @@ public:
 : .gems ( n -- )
   times
       newgem
-      swap gemtype type space
+      nip  dup gemtype space
       20 /mod ?dup  if  .. ." gp "  then
       ?dup  if  ..  ." sp "  then
       cr
@@ -177,7 +252,7 @@ dtable: jbase
 : appraise ( base1 -- base2 value )
   dup
   jval  ( base value )
-  d10 1 = if ." + "
+  d10 1 = if
       improve? if
       	drop 1+ 7 min recurse
       else
@@ -189,7 +264,6 @@ dtable: jbase
 : boostgem ( -- bonus )
   5000
   begin ( bonus )
-  	." ! "
   	dup 640000 <  d6 1 = and
 	while 2*
   repeat

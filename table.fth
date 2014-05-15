@@ -160,7 +160,7 @@ s" String table out of range" error: $tabrange
 : (pick1)  ( pfa -- ??? )
   2@ ( xt last )
   dup (autocount)  ( xt last n )
-  d  -rot swap (table)
+  d -rot swap (table)
 ;
 
 : pick1 ( <name> --  ??? )

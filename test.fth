@@ -4,6 +4,9 @@ treasure
 
 MAGIC
 
-: t swords ;
+: t Qx10 .report ;
 : tt 
 times t cr iterate ;
+
+GEMS
+: x semipreciousnames ;
