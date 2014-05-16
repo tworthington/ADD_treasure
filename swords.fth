@@ -270,7 +270,7 @@ dtable: #languages
 
 : .languages
   swordlanguages @ ?dup if
-    ." speaks "
+    ." ; speaks "
     dup dup . 1 = if ." other language: " else ." other languages: " then
     languages
     swordint @ 15 > if ."  (and can read these too"
@@ -291,7 +291,7 @@ dtable: #languages
   swordego @ 1+ 2/ swordego !
   ." INT " swordint @ .. .;
   ." EGO " swordego @ .. .;
-  ." Personality " swordego @ swordint @ + .. .;
+  ." Personality " swordego @ swordint @ + ..
   .languages .primes .extras
 ;
 
