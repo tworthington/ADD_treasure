@@ -4,7 +4,7 @@ treasure
 
 MAGIC
 
-: t Qx10 .report ;
+: t reset F .report ;
 : tt 
 times t cr iterate ;
 

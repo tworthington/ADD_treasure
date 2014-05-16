@@ -33,7 +33,7 @@ lookup: semipreciousnames
 0:	." Bloodstone" ;i
 0:	." Carnelian" ;i
 0:	." Chalcedony" ;i
-0:	." Chrysoprose" ;i
+0:	." Chrysoprase" ;i
 0:	." Citrine" ;i
 0:	." Jasper" ;i
 0:	." Moonstone" ;i
@@ -136,15 +136,6 @@ private:
 
 : doublebase ( n -- value)
   base>value 2* ;
-
-\ is n >= l AND =< h ?
-: >=< ( n l h -- flag)
-  rot tuck ( l n h n )
-  1- >     ( l n fh )
-  -rot     ( fh l n )
-  1+ <
-  and
-;
 
 \ If going down in value, maximum of 5 shifts
 \ with appraise having started with one, hence "4"

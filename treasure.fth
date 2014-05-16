@@ -41,6 +41,15 @@ decimal
   1 swap lshift not and swap
 ;
 
+\ is n >= l AND =< h ?
+: >=< ( n l h -- flag)
+  rot tuck ( l n h n )
+  1- >     ( l n fh )
+  -rot     ( fh l n )
+  1+ <
+  and
+;
+
 : binary 2 base ! ;
 
 create $pad  65540 allot
@@ -101,9 +110,11 @@ does>
 : .:
   [char] : emit space ;
 
-: ?., i 0<> if ., then ;
+: ?., i  if ., then ;
 
-: ?.; i 0<> if .; then ;
+: ?.; i  if .; then ;
+
+: ?cr i if cr then ;
 
 : " [char] " emit ;
 
@@ -155,11 +166,11 @@ reset
 \ output n without trailing space
 
 : .report
-  cp @ ?dup if .. ." cp " then
-  sp @ ?dup if .. ." sp " then
-  ep @ ?dup if .. ." ep " then
-  gp @ ?dup if .. ." gp " then
-  pp @ ?dup if .. ." pp " then
+  cp @ ?dup if .. ." cp " cr then
+  sp @ ?dup if .. ." sp " cr then
+  ep @ ?dup if .. ." ep " cr then
+  gp @ ?dup if .. ." gp " cr then
+  pp @ ?dup if .. ." pp " cr then
   gem @ ?dup if cr .. ."  gems: " cr gem @ .gems then
   jewel @ ?dup if cr  .. ."  jewels: " cr  jewel @ .jewels  then
   magical @ if .magic then

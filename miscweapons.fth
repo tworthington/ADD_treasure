@@ -87,11 +87,11 @@
 04	i: ." Axe of Hurling, +" d20 axeofhurling .. ;i
 05	i: ." Battle Axe, +2" ;i
 11	i: ." Battle Axe, +3" ;i
-14	i: 6d6 .. ." x Bolt, +1, 6-36" ;i
-21	i: 3d4 .. ." x Bolt, +3, 3-12 in number" ;i
-23	i: 5d4 .. ." x Bullet, Sling,, +1" ;i
-28	i: 3d4 .. ." x Bullet, Sling,, +2" ;i
-32	i: 2d4 .. ." x Bullet, Sling,, +3" ;i
+14	i: 6d6 .. ." x Bolt, +1" ;i
+21	i: 3d4 .. ." x Bolt, +3" ;i
+23	i: 5d4 .. ." x Bullet, Sling, +1" ;i
+28	i: 3d4 .. ." x Bullet, Sling, +2" ;i
+32	i: 2d4 .. ." x Bullet, Sling, +3" ;i
 35	i: d4 .. ." x Bullet, Sling, of Impact" ;i
 36	i: ." Dagger, +1" ;i
 41	i: ." Dagger, +2" ;i
@@ -104,9 +104,9 @@
 	91	i: 4 ;i
 	;table
 47	i: ." Dagger of Throwing, +" daggerofthrowing . ;i
-48	i: ." Dart, +1, 3-12 in number" ;i
-52	i: ." Dart, +2, 2-8 in number" ;i
-55	i: ." Dart, +3, 1-4 in number" ;i
+48	i: ." Dart, +1" ;i
+52	i: ." Dart, +2" ;i
+55	i: ." Dart, +3" ;i
 57	i: d2 .. ." x Dart of Homing" ;i
 58	i: ." Flail, +2" ;i
 62	i: ." Hammer, +4" ;i

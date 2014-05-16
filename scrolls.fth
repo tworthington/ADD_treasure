@@ -101,7 +101,7 @@ public:
 	1	i: ." reader polymorphed to monster of equal level, attacks" ;i
 	26	i: ." reader turned to liquid, drains away" ;i
 	31	i: ." reader and all within 20' transported " 2d6 100 * . ." miles away" ;i
-	41	i: ." reader and all withing 20' transported to another world, plane, or continuum" ;i
+	41	i: ." reader and all within 20' transported to another world, plane, or continuum" ;i
 	51	i: ." reader contracts disease, fatal in " 2d4 . ." turns" ;i
 	76	i: ." explosive runes, " 6d4 6 + . ." damage to reader, others within 1" " ."  save for half" ;i
 	91	i: ." nearby item demagicked" ;i
