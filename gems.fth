@@ -285,11 +285,51 @@ dtable: jbase
 ;
 
 public:
+
+%table: jeweleditem
+1	i: ." anklet" ;i
+3	i: ." arm band" ;i
+7	i: ." belt" ;i
+10	i: ." box (small)" ;i
+13	i: ." bracelet" ;i
+17	i: ." brooch" ;i
+20	i: ." buckle" ;i
+22	i: ." chain" ;i
+26	i: ." chalice" ;i
+27	i: ." choker" ;i
+28	i: ." clasp" ;i
+31	i: ." coffer" ;i
+33	i: ." collar" ;i
+34	i: ." comb" ;i
+36	i: ." coronet" ;i
+37	i: ." crown" ;i
+38	i: ." decanter" ;i
+40	i: ." diadem " ;i
+41	i: ." earring" ;i
+46	i: ." fob" ;i
+48	i: ." goblet" ;i
+53	i: ." headband (fillet)" ;i
+55	i: ." idol" ;i
+58	i: ." locket" ;i
+60	i: ." medal" ;i
+63	i: ." medallion" ;i
+69	i: ." necklace" ;i
+76	i: ." pendant" ;i
+79	i: ." pin" ;i
+84	i: ." orb" ;i
+85	i: ." ring" ;i
+94	i: ." sceptre" ;i
+95	i: ." seal" ;i
+97	i: ." statuette" ;i
+100	i: ." tiara" ;i
+;table
+
 : .jewels ( n -- )
   times
 	jewel
-	-rot .. ." gp, "
+	-rot .. ." gp "
 	jtext ( gem?)
+	space jeweleditem
 	if ."  *exceptional gem*" then
 	cr
   iterate

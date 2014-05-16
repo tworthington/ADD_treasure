@@ -4,7 +4,7 @@ treasure
 
 MAGIC
 
-: t reset F .report ;
+: t reset H S T .report ;
 : tt 
 times t cr iterate ;
 

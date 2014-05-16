@@ -171,3 +171,19 @@ s" String table out of range" error: $tabrange
 	(pick1)
   then
 ; immediate
+
+: %table: ( <name> -- baseaddr prevdummt)
+  [ ' < ] literal
+  create here 0 , swap , 0
+does> ( addr )
+  d100 swap (prep-tab) (table)
+;
+
+\ force a number into a %table instead of letting it roll
+: %debug: ( n ) ' >pf @ (prep-tab) (table) ;
+
+: override: ( n )
+  ' >pf @  lit
+  postpone (prep-tab)
+  postpone (table)
+; immediate
