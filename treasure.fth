@@ -190,10 +190,12 @@ reset
   1 magical !
 ;
 
+public:
 : >factor
   2dup > if 2drop 120 100 then swap factor 2!
 ;
 
+private:
 : factor*  factor 2@ */ ;
 
 \ TT consists of a list of pairs:
