@@ -232,11 +232,11 @@ B i: [ base @ decimal ] 40 d 60 + [ base ! ] limitedmap/magic ;i
 
 C i: I.map/magic ., cr I.map/magic ;i
 
-D i: d100 limitedmap/magic  d100 limitedmap/magic potions ;i
+D i: d100 limitedmap/magic  d100 limitedmap/magic potions cr ;i
 E i: 3 times I.map/magic cr iterate  scrolls ;i
-F i: 3 times 75 d limitedmap/magic  iterate potions cr scrolls ;i
-G i: 4 times I.map/magic cr iterate  scrolls ;i
-H i: 4 times I.map/magic cr iterate  potions cr scrolls  ;i
+F i: 3 times 75 d limitedmap/magic  iterate potions cr scrolls cr ;i
+G i: 4 times I.map/magic iterate  scrolls cr ;i
+H i: 4 times I.map/magic iterate  potions cr scrolls cr ;i
 
 I i:  I.map/magic ;i
 
@@ -250,14 +250,14 @@ P i: ." p magic " ;i
 Q i: ." q magic " ;i
 R i: ." r magic " ;i
 
-S i: 2d4 times potions ?cr iterate ;i
-T i: d4 times scrolls ?cr iterate ;i
+S i: 2d4 times potions cr iterate ;i
+T i: d4 times scrolls cr iterate ;i
 U i: potions cr rings cr rod/staff/wand cr misc.magic cr armour/shield cr swords cr misc.weapons cr ;i
 V i: 2 times rings cr rod/staff/wand cr misc.magic cr armour/shield cr swords cr misc.weapons cr iterate ;i
 
 W i: just-map ;i
 
-X i: misc.magic cd potions ;i
+X i: misc.magic cr potions cr ;i
 Y i: ." y magic" ;i
 
 Z i: d100 III.magic d100 III.magic d100 III.magic   ;i

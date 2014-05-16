@@ -171,8 +171,8 @@ reset
   ep @ ?dup if .. ." ep " cr then
   gp @ ?dup if .. ." gp " cr then
   pp @ ?dup if .. ." pp " cr then
-  gem @ ?dup if cr .. ."  gems: " cr gem @ .gems then
-  jewel @ ?dup if cr  .. ."  jewels: " cr  jewel @ .jewels  then
+  gem @ ?dup if .. ."  gems: " cr gem @ .gems cr then
+  jewel @ ?dup if  .. ."  jewels: " cr  jewel @ .jewels cr then
   magical @ if .magic then
 ;
 
