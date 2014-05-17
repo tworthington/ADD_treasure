@@ -230,7 +230,7 @@ A i:  3 times I.map/magic ?cr iterate ;i
 
 B i: [ base @ decimal ] 40 d 60 + [ base ! ] limitedmap/magic ;i
 
-C i: I.map/magic ., cr I.map/magic ;i
+C i: I.map/magic cr I.map/magic ;i
 
 D i: d100 limitedmap/magic  d100 limitedmap/magic potions cr ;i
 E i: 3 times I.map/magic cr iterate  scrolls ;i
