@@ -191,7 +191,7 @@ reset
 ;
 
 public:
-: >factor
+: factor!
   2dup > if 2drop 120 100 then swap factor 2!
 ;
 
