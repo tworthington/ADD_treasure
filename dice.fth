@@ -43,6 +43,10 @@ public:
 : d3 3 d ;
 : d2 2 d ;
 
+: dav d6 dup 6 = if drop 4 else
+      	 dup 1 = if drop 3 else
+	 then then
+;
 
 : 2d4 2 4 roll ;
 : 3d4 3 4 roll ;

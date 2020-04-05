@@ -82,11 +82,6 @@ digression III.G 'swords.fth'
 ;table
 
 : swords
-  0 swordego !
-  0 swordlanguages !
-  -1 legalalign !
-  -primaries
-  -extras
   swordstab
 ;
 
@@ -277,5 +272,9 @@ public:
      then
   loop
 ;
+
+global:
+: #magic
+  times  d100 III.magic iterate ;
 
 ;module

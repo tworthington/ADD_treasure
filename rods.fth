@@ -8,7 +8,7 @@ public:
 1	i: ." Rod of Absorption (C,M)" rodcharges ;i
 7	i: ." Rod of Alertness" rodcharges ;i
 11	i: ." Rod of Beguiling (C,M,T)" rodcharges ;i
-12	i: ." Rod of Cancellation" rodcharges ;i
+12	i: ." Rod of Cancellation - 1 use" ;i
 22	i: ." Rod of Flailing" rodcharges ;i
 27	i: ." Rod of Lordly Might (F)" rodcharges ;i
 28	i: ." Rod of Passage" rodcharges ;i

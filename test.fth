@@ -10,3 +10,5 @@ times t cr iterate ;
 
 GEMS
 : x semipreciousnames ;
+
+10 25 factor!

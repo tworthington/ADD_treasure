@@ -167,7 +167,7 @@ private:
   nip
 ;
 
-: appraise ( base -- base value)
+: appraisegem ( base -- base value)
   dup d10 >r
   r@ 1 = if base++ 1 good then
   r@ 2 = if doublebase then
@@ -177,21 +177,27 @@ private:
   r> 10 = if base-- 1 poor then
 ;
 
-public:
-
-: newgem ( -- base value)
-  base appraise
-;
-
-: .gems ( n -- )
-  times
-      newgem
+: .gem ( base value -- )
       nip  dup gemtype space
       20 /mod ?dup  if  .. ." gp "  then
       ?dup  if  ..  ." sp "  then
       cr
+;
+
+public:
+
+: newgem ( -- base value)
+  base appraisegem
+;
+
+: .gems ( n -- )
+  times
+      newgem .gem
    iterate
 ;
+
+: .batchgems ( base n -- )
+  times dup appraisegem .gem iterate drop ;
 
 private:
 
@@ -334,5 +340,15 @@ public:
 	cr
   iterate
 ;
+
+global:
+
+: #gems
+  times
+        newgem .gem
+  iterate
+;
+
+: #jewels .jewels ;
 
 ;module

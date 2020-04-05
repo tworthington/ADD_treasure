@@ -1,5 +1,8 @@
 private:
 
+\ This code assumes that swordtype is the first word called to create a new sword.
+\ If not true for a particular sword, do  "0 swordalignment !" before calling ego.
+
 create langtrack 100 cells allot
 
 : -language
@@ -85,6 +88,12 @@ decimal
   then then
 ;
 
+\ Set specific alignment
+: =align ( l/c g/e -- )
+  or dup swordalignment !
+  legalalign !
+;
+
 \ Final word swords force alignment but can't use 0
 \ because then alignment is random, so we signal it
 \ with a negative alignment
@@ -106,7 +115,10 @@ decimal
 : alignment
   swordalignment @ 0= if
     begin
-	  alignmenttab legalalign @ over btest 0= while drop
+      alignmenttab legalalign @ ( alignbit legalbits )
+      over ( alignbit legalbits alignbit)
+      btest
+      0= while drop
     repeat
     swordalignment !
   then
@@ -310,7 +322,7 @@ dtable: #languages
   25 d 75 + override: ego
 ;
   
-%table: swordtype
+%table: swordtypetab
 1	i: ." Longsword" ;i
 66	i: ." Broadsword" ;i
 86	i: ." Falcion" ;i
@@ -318,6 +330,16 @@ dtable: #languages
 96	i: ." Bastard sword" ;i
 100	i: ." Two-handed sword" ;i
 ;table
+
+: swordtype
+  0 swordego !
+  0 swordlanguages !
+  0 swordalignment !
+  -1 legalalign !
+  -primaries
+  -extras
+  swordtypetab
+;
 
 public:
 
@@ -330,7 +352,7 @@ public:
 46	i: swordtype ." , +1, Flame Tongue: +2 vs. regenerating; +3 vs. cold-using, inflamable, or avian; +4 vs. undead " 5 ego ;i
 50	i: swordtype ." , +1 Luck Blade (" d4 1+ . ." wishes)" Lawful Neutral -align 2 ego ;i
 51	i: swordtype ." , +2" 2 ego ;i
-59	i: swordtype ." , +2, Giant Slayer" 4 ego ;i
+59	i: swordtype ." , +2, Giant Slayer" 5 ego ;i
 
 	lookup: dragonslayertype ( align)
 	1	i: ." black" Chaotic Evil ;i		6	i: ." gold" Lawful Good ;i
@@ -340,10 +362,10 @@ public:
 	5	i: ." red" Chaotic Evil ;i		10	i: ." copper" Chaotic Good ;i
 	;table
 63	i: swordtype ." , +2, Dragon Slayer (" d10  dragonslayertype -align ." )" 6 ego ;i
-67	i: ." Shortsword of Quickness +2" 4 ego ;i
+67	i: 0 swordalignment ! ." Shortsword of Quickness +2" 4 ego ;i
 71	i: swordtype ." , +3" 3 ego ;i
 77	i: swordtype ." , +3, Frost Brand: + 6 vs. fire using/dwelling creatures" 9 ego ;i
-80	i: ." Broadsword of the planes" ;i
+80	i: 0 swordalignment ! ." Broadsword of the planes" 4 ego ;i
 82	i: swordtype ." , +4" 4 ego ;i
 85	i: swordtype ." , +4 Defender" 8 ego ;i
 87	i: swordtype ." , +5" 5 ego ;i
@@ -353,7 +375,7 @@ public:
 ;table
 
 %table: III.G.2
-1	i: ." Sun blade (bastard sword), +2, +4 vs. Evil"  Any Good +align 12 ego ;i
+1	i: 0 swordalignment ! ." Sun blade (bastard sword), +2, +4 vs. Evil"  Any Good +align 12 ego ;i
 16	i: swordtype ." , anything" 10 ego ;i
 
 	lookup: finalword
@@ -371,8 +393,8 @@ public:
 33	i: swordtype ."  of Dancing"  5 ego ;i
 46	i: swordtype ." , +5, Defender" 10 ego ;i
 62	i: swordtype ." , +6, Defender" 12 ego ;i
-70	i: swordtype ." , +5, Holy Avenger" Lawful Good +align 10 ego ;i
-85	i: swordtype ." , +6, Holy Avenger" Lawful Good +align 12 ego ;i
+70	i: swordtype ." , +5, Holy Avenger" Lawful Good +align 10 superego ;i
+85	i: swordtype ." , +6, Holy Avenger" Lawful Good +align 12 superego ;i
 92	i: swordtype ."  of Life Stealing" Neutral Good -align 4 ego ;i
 94	i: swordtype ." , +2, Nine Lives Stealer" Neutral Good -align 4 ego ;i
 96	i: swordtype ."  of Sharpness" Chaotic Any +align 6 ego ;i

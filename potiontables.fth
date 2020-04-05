@@ -8,7 +8,7 @@
 	18	i: ." reptile/amphibian/fish" ;i
 	20	i: ." all" ;i
 	;table	
-01	i: pot ." Animal Control (" d10 animalcontrolpotion ." )" ;i
+01	i: pot ." Animal Control (" d20 animalcontrolpotion ." )" ;i
 
 04	i: pot ." Clairaudience" ;i
 07	i: pot ." Clairvoyance" ;i

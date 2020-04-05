@@ -164,7 +164,7 @@
 88	i: ." Quarterstaff, Magic, +" d20 magicstaff . ;i
 90	i: khopesh? ." , +1" ;i
 93	i: khopesh? ." , +3" ;i
-95	i: khopesh? ." of Speed" ;i
+95	i: khopesh? ."  of Speed" ;i
 96	i: khopesh? ." , +4" ;i
 97	i: ." Spear, +4" ;i
 100	i: ." Spear, +5" ;i
